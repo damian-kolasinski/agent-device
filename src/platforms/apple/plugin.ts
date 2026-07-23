@@ -12,7 +12,6 @@ import {
   resolveDeviceAppleOs,
   type DeviceInfo,
 } from '../../kernel/device.ts';
-import { iosPhysicalDeviceBackendForDevice } from './core/physical-device-control-registry.ts';
 import type { RunnerContext } from '../../core/interactor-types.ts';
 
 // ---------------------------------------------------------------------------
@@ -132,10 +131,6 @@ export const applePlugin = {
     bucket: 'apple',
     supportsByDefault: APPLE_SUPPORTS_BY_DEFAULT,
     unsupportedHintByDefault: APPLE_UNSUPPORTED_HINT_BY_DEFAULT,
-    deviceBackend: (device: DeviceInfo) =>
-      device.kind === 'device' && !isMacOs(device)
-        ? iosPhysicalDeviceBackendForDevice(device)
-        : undefined,
   },
   // Wraps the Apple arm of `resolveLogBackend` verbatim: macOS -> 'macos';
   // an iOS `device` -> 'ios-device'; every other iOS kind -> 'ios-simulator'.
