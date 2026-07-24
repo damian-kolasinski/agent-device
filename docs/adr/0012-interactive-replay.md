@@ -38,6 +38,11 @@ Accepted (2026-07-10); partially implemented (last updated 2026-07-16). See [Mig
 - Decision 6 amendment, repair-segment default exclusion of observation-only commands and the `--record`
   opt-in — stage 1 (interim guidance only, #1287) and stage 2 (the semantic default-exclusion fix,
   this amendment) of #1271. See the amendment under decision 6 below.
+- Decision 3 amendment, bounded pre-dispatch capture retry on an app-launch race — a step right after
+  `open --relaunch` whose pre-dispatch verification capture lands mid-launch/mid-mount now retries
+  (bounded backoff, 12s wall-clock deadline) instead of failing closed on the first `capture-failed` /
+  `sparse-snapshot` verdict, opt-in per call site so the post-failure/guard-mismatch diagnostic captures
+  are unaffected (#1385).
 
 **Accepted but NOT yet implemented** (this amendment; tracked by #1235 — repair-transaction lifecycle):
 the R7 repair-transaction keep-alive and its distinct `resume.repairSessionHeld` signal, the ARMED →
@@ -466,6 +471,20 @@ A field present in the recording but absent on the compared node is a mismatch; 
 An old unannotated action remains executable without this check. All three divergence classes are
 target-binding divergences reported before the device action. This is not general outcome verification:
 `--verify` remains post-action change evidence with a different contract.
+
+> **Amendment (#1385).** The capture this verification runs against (`captureDivergenceObservation`) is
+> itself the pre-dispatch gate a step right after `open --relaunch` races: the app can still be
+> launching/mounting when it lands, producing a transient content-quality verdict — `capture-failed`
+> (Android's snapshot helper returns "insufficient foreground app content" while the app is mounting, and
+> the capture path throws) or `sparse-snapshot` (iOS's private-AX fallback under load) — that is not a
+> real divergence, only an unlucky capture. This capture now retries with a bounded backoff (fixed delay
+> list, capped at a 12s wall-clock deadline) before falling through to `identity-unverifiable`, mirroring
+> the keep-polling semantics `wait`'s recorded-landmark identity verification (#1349) already applies on
+> its own (post-resolution) path. The retry is opt-in per call site (`retryLaunchRace`), not a change to
+> every `captureDivergenceObservation` caller: only the pre-dispatch verification gate in
+> `verifyReplayActionTarget` races a launch this way — the post-failure diagnostic capture
+> (`buildReplayFailureDivergence`) and the post-resolution guard-mismatch capture both follow an
+> already-real failure, where retrying would only delay an already-decided divergence.
 
 ### 4. Divergence wire contract and replay-only resume
 
