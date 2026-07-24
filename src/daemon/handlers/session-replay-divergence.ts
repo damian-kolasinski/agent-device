@@ -1,10 +1,11 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import { sleep } from '../../utils/timeouts.ts';
-import { normalizeError } from '../../kernel/errors.ts';
-import type { AndroidHelperContentRecoveryDecision } from '../../platforms/android/snapshot-content-recovery.ts';
 import { markSessionPartialRefsIssued, setSessionSnapshot } from '../session-snapshot.ts';
-import { isSparseSnapshotQualityVerdict } from '../../snapshot/snapshot-quality.ts';
+import {
+  isSparseSnapshotQualityVerdict,
+  isUnreadableCaptureContentError,
+} from '../../snapshot/snapshot-quality.ts';
 import { displayLabel, formatRole } from '../../snapshot/snapshot-lines.ts';
 import { redactDiagnosticData } from '../../kernel/redaction.ts';
 import type { CommandFlags } from '../../core/dispatch.ts';
@@ -288,41 +289,6 @@ export async function captureDivergenceObservation(params: {
   return attempt.observation;
 }
 
-// The ONLY three reason codes `rejectAndroidHelperContentUnavailable`
-// (`platforms/android/snapshot.ts`) attaches as
-// `androidSnapshotHelperFailureReason` — mirrors
-// `AndroidHelperContentRecoveryDecision['reason']`
-// (`platforms/android/snapshot-content-recovery.ts`), the SOLE site that
-// classifies a structurally-succeeded helper capture as too thin/foreign to
-// trust: the helper produced accessibility XML, but its content doesn't meet
-// the bar. This is deliberately narrower than the error's own `retriable`
-// flag: Android's adb layer (`adb-executor.ts`) ALSO marks transport-level
-// mechanism failures retriable (`connection_dropped`, `device_offline`,
-// `server_version_mismatch`) because an unchanged retry of the SAME adb
-// command can succeed there — a true statement about adb, but not evidence
-// this specific capture failure is a content-quality verdict rather than a
-// genuine mechanism failure (a crashed/timed-out helper invocation, a
-// dropped adb connection, a missing helper artifact) a launch-race retry
-// cannot fix. `androidSnapshotHelperCaptureError`'s generic capture-failure
-// wrap (`rejectAndroidHelperCaptureFailure`) ALSO sets
-// `androidSnapshotHelperFailureReason` — but to an arbitrary formatted
-// failure message, never one of these three literals, so this exact-value
-// membership check does not also catch that unrelated, non-content-quality
-// case.
-const ANDROID_CAPTURE_CONTENT_QUALITY_REASONS: ReadonlySet<
-  AndroidHelperContentRecoveryDecision['reason']
-> = new Set(['empty-helper-output', 'system-window-only', 'content-poor-app-window']);
-
-function isCaptureContentQualityFailure(error: unknown): boolean {
-  const reason = normalizeError(error).details?.androidSnapshotHelperFailureReason;
-  return (
-    typeof reason === 'string' &&
-    ANDROID_CAPTURE_CONTENT_QUALITY_REASONS.has(
-      reason as AndroidHelperContentRecoveryDecision['reason'],
-    )
-  );
-}
-
 type DivergenceCaptureAttempt = {
   observation: DivergenceObservation;
   /**
@@ -330,9 +296,19 @@ type DivergenceCaptureAttempt = {
    * particular failure is a content-quality verdict a launch-race retry
    * should ride out, versus a mechanism failure that will not resolve itself
    * (helper artifact missing, device offline, adb connection dropped).
-   * Mirrors #1381's `isUnreadableCaptureContentError` taxonomy for the wait
-   * keep-poll loop — content verdict retries, mechanism failure fails fast.
-   * The non-throwing `sparse-snapshot` verdict is always retryable — it is
+   * Determined by `isUnreadableCaptureContentError` (`snapshot/
+   * snapshot-quality.ts`, #1381) for a thrown capture — the SAME
+   * content-quality-vs-mechanism-failure taxonomy the wait keep-poll loop
+   * uses: true only for the exact three `androidSnapshotHelperFailureReason`
+   * literals `rejectAndroidHelperContentUnavailable`
+   * (`platforms/android/snapshot.ts`) attaches to a
+   * structurally-succeeded-but-too-thin/foreign helper capture — never the
+   * error's own generic `retriable` flag (Android's adb layer separately
+   * marks true transport mechanism failures retriable too, e.g.
+   * `connection_dropped`), never the free-form failure message
+   * `androidSnapshotHelperCaptureError` sets for a crashed/timed-out helper,
+   * and never present at all for a permanently missing helper artifact. The
+   * non-throwing `sparse-snapshot` verdict is always retryable — it is
    * already a content-quality signal, never a mechanism failure.
    */
   retryable: boolean;
@@ -394,7 +370,7 @@ async function captureDivergenceObservationAttempt(params: {
         reason: 'capture-failed',
         hint: `Post-failure snapshot capture failed (${error instanceof Error ? error.message : String(error)}); the original replay failure is unaffected.`,
       },
-      retryable: isCaptureContentQualityFailure(error),
+      retryable: isUnreadableCaptureContentError(error),
     };
   }
 }
