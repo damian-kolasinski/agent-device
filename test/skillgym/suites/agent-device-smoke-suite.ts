@@ -2625,6 +2625,33 @@ Do not combine final commands with shell operators such as &&, ||, pipes, or sem
     forbiddenOutputs: [plannedCommand('longpress'), RAW_COORDINATE_TARGET, /--surface menubar/i],
   }),
   makeCase({
+    id: 'ios-system-ui-springboard-widget-add',
+    contract: [
+      'Platform: iOS',
+      'App name: Agent Device Tester',
+      'Bundle identifier: com.callstack.agentdevicelab',
+      'Session: catalog',
+      'Agent Device Tester is already open on this session; its widget-ready state is prepared',
+      'agent-device open com.apple.springboard --platform ios binds the session to SpringBoard for selector-driven commands; there is no separate widget/system command',
+      'Entering SpringBoard edit mode needs one deliberate empty-space long-press on the home screen; there is no selector for it',
+      'The widget-gallery search-result row for "Calendar" currently returns an unlabeled accessibility node, so select it by coordinates read from a screenshot',
+      'SpringBoard control labels vary by iOS version and locale; discover them from a fresh snapshot -i instead of assuming fixed English strings',
+    ],
+    task: 'Plan the commands to open SpringBoard, enter edit mode, search the widget gallery for "Calendar", add it using the documented coordinate fallback for the unlabeled search-result row, reopen Agent Device Tester to resume app automation, and close the session.',
+    outputs: [
+      plannedCommand('open com.apple.springboard'),
+      /--platform ios/i,
+      /snapshot\b[^\n]*-i\b/i,
+      plannedCommand('longpress'),
+      /(?:^|\n)(?:agent-device\s+)?screenshot\b/i,
+      RAW_COORDINATE_TARGET,
+      /label=["']Add Widget["']/i,
+      plannedCommand('open com.callstack.agentdevicelab'),
+      plannedCommand('close'),
+    ],
+    forbiddenOutputs: [plannedCommandAlternatives(['widget', 'widget add']), /widget\s+add/i],
+  }),
+  makeCase({
     id: 'replay-maintenance-update',
     contract: [
       'Replay path: ./replays/catalog-checkout.ad',
