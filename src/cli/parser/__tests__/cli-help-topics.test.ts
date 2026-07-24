@@ -168,6 +168,10 @@ test('usage includes agent workflows, config, environment, and examples footers'
   );
   assert.match(
     usageText,
+    /agent-device help ios-system-ui\s+Use when driving iOS SpringBoard, widgets, or other system-UI surfaces/,
+  );
+  assert.match(
+    usageText,
     /agent-device help react-native\s+Use when the target app is React Native, Expo, or a dev client/,
   );
   assert.match(
@@ -477,6 +481,17 @@ test('usageForCommand resolves physical-device help topic', async () => {
   assert.match(help, /AGENT_DEVICE_IOS_TEAM_ID=ABCDE12345/);
   assert.match(help, /AGENT_DEVICE_IOS_BUNDLE_ID=com\.yourname\.agentdevice\.runner/);
   assert.match(help, /profile name\/specifier, not a file path/);
+});
+
+test('usageForCommand resolves ios-system-ui help topic', async () => {
+  const help = await usageForCommand('ios-system-ui');
+  if (help === null) throw new Error('Expected ios-system-ui help text');
+  assert.match(help, /agent-device help ios-system-ui/);
+  assert.match(help, /agent-device open com\.apple\.springboard --platform ios/);
+  assert.match(help, /longpress <x> <y> on an empty area of the home screen/);
+  assert.match(help, /discover them from the current snapshot/);
+  assert.match(help, /Do not hard-code Edit\/Done\/Add Widget or other SpringBoard label text/);
+  assert.match(help, /Reopen the app bundle under test/);
 });
 
 test('usageForCommand resolves manual QA help topic', async () => {
