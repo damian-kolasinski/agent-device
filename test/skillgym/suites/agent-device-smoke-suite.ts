@@ -454,13 +454,41 @@ const IOS_TEST_APP_DEV_BUILD_OPEN = new RegExp(
 interface SequentialCommandStep {
   label: string;
   regex: RegExp;
+  /**
+   * Require this step's line to be the very next command (no intervening commands at all).
+   * Use this for a freshness-sensitive observation/action pair — for example a ref press that
+   * must immediately follow the snapshot that minted it, or a coordinate action that must
+   * immediately follow the screenshot it was read from — so a state-changing command in between
+   * (which could invalidate the ref/coordinate) fails the case instead of silently passing.
+   */
+  requireAdjacent?: boolean;
+}
+
+function findStepMatchIndex(
+  lines: readonly string[],
+  step: SequentialCommandStep,
+  cursor: number,
+): number {
+  const searchEnd = step.requireAdjacent === true ? cursor + 1 : lines.length;
+  for (let i = cursor; i < searchEnd; i++) {
+    if (step.regex.test(lines[i]!)) return i;
+  }
+  return -1;
+}
+
+function describeStepPosition(step: SequentialCommandStep, cursor: number): string {
+  return step.requireAdjacent === true
+    ? `immediately at position ${cursor} (no intervening commands)`
+    : `at or after position ${cursor}`;
 }
 
 /**
  * Enforces that each step's pattern appears, in order, at or after the position where the
  * previous step matched — unlike the presence-only OutputMatcher checks above, this catches a
  * plan that satisfies every individual requirement out of order (for example an early,
- * unrelated snapshot standing in for the one that must follow a specific action).
+ * unrelated snapshot standing in for the one that must follow a specific action). Steps marked
+ * requireAdjacent must match at that exact position, catching a stale ref/coordinate used after
+ * an intervening state-changing command.
  */
 function assertSequentialCommandSteps(
   finalOutput: string,
@@ -473,16 +501,10 @@ function assertSequentialCommandSteps(
     .filter(Boolean);
   let cursor = 0;
   for (const step of steps) {
-    let matchIndex = -1;
-    for (let i = cursor; i < lines.length; i++) {
-      if (step.regex.test(lines[i]!)) {
-        matchIndex = i;
-        break;
-      }
-    }
+    const matchIndex = findStepMatchIndex(lines, step, cursor);
     assert.ok(
       matchIndex !== -1,
-      `${caseLabel}: expected step "${step.label}" at or after position ${cursor}. Observed commands:\n${lines.join('\n')}`,
+      `${caseLabel}: expected step "${step.label}" ${describeStepPosition(step, cursor)}. Observed commands:\n${lines.join('\n')}`,
     );
     cursor = matchIndex + 1;
   }
@@ -2719,32 +2741,40 @@ Do not combine final commands with shell operators such as &&, ||, pipes, or sem
         regex: /^(?:agent-device\s+)?snapshot\b.*-i\b/i,
       },
       {
-        label: 'press/click @e30 to open the widget gallery',
+        label:
+          'press/click @e30 to open the widget gallery, immediately after the snapshot that minted it',
         regex: /^(?:agent-device\s+)?(?:press|click)\s+@e30\b/i,
+        requireAdjacent: true,
       },
       {
         label: 'fresh snapshot -i exposing @e31',
         regex: /^(?:agent-device\s+)?snapshot\b.*-i\b/i,
       },
       {
-        label: 'fill @e31 with "Calendar" to search the gallery',
+        label:
+          'fill @e31 with "Calendar" to search the gallery, immediately after the snapshot that minted it',
         regex: /^(?:agent-device\s+)?fill\s+@e31\b.*calendar/i,
+        requireAdjacent: true,
       },
       {
         label: 'screenshot before the coordinate fallback',
         regex: /^(?:agent-device\s+)?screenshot\b/i,
       },
       {
-        label: 'raw-coordinate press on the unlabeled search-result row',
+        label:
+          'raw-coordinate press on the unlabeled search-result row, immediately after the screenshot it was read from',
         regex: /^(?:agent-device\s+)?(?:press|click)\s+-?\d+(?:\.\d+)?\s+-?\d+(?:\.\d+)?\b/i,
+        requireAdjacent: true,
       },
       {
         label: 'fresh snapshot -i exposing @e35',
         regex: /^(?:agent-device\s+)?snapshot\b.*-i\b/i,
       },
       {
-        label: 'press/click @e35 to place the widget',
+        label:
+          'press/click @e35 to place the widget, immediately after the snapshot that minted it',
         regex: /^(?:agent-device\s+)?(?:press|click)\s+@e35\b/i,
+        requireAdjacent: true,
       },
       {
         label: 'reopen Agent Device Tester',
