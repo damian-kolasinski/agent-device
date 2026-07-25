@@ -19,6 +19,7 @@ import {
   type LinuxToolProviderResolver,
   type RequestPlatformProviderScope,
   type RecordingProviderResolver,
+  type VegaToolProviderResolver,
   type WebProviderResolver,
   withRequestPlatformProviderScope,
 } from './request-platform-providers.ts';
@@ -27,6 +28,7 @@ import {
   emitDiagnostic,
   flushDiagnosticsToSessionFile,
   getDiagnosticsMeta,
+  registerDiagnosticSensitiveValue,
   withDiagnosticsScope,
 } from '../utils/diagnostics.ts';
 import type { LeaseRegistry } from './lease-registry.ts';
@@ -45,6 +47,7 @@ import { buildRequestFinishedEvent, shouldRecordEventForRequest } from './sessio
 import { canRunReplayScopedAction } from './daemon-command-registry.ts';
 import { createAgentBrowserWebProvider } from '../platforms/web/agent-browser-provider.ts';
 import { openWebSessionNames } from './web-session-names.ts';
+import { inferFillText } from './action-utils.ts';
 
 // ---------------------------------------------------------------------------
 // Request handler API
@@ -60,6 +63,7 @@ export type RequestRouterDeps = {
   appleRunnerProvider?: AppleRunnerProviderResolver;
   appleToolProvider?: AppleToolProviderResolver;
   linuxToolProvider?: LinuxToolProviderResolver;
+  vegaToolProvider?: VegaToolProviderResolver;
   webProvider?: WebProviderResolver;
   appLogProvider?: AppLogProviderResolver;
   recordingProvider?: RecordingProviderResolver;
@@ -86,6 +90,7 @@ export function createRequestHandler(deps: RequestRouterDeps): DaemonInvokeFn {
     appleRunnerProvider,
     appleToolProvider,
     linuxToolProvider,
+    vegaToolProvider,
     webProvider,
     appLogProvider,
     recordingProvider,
@@ -135,9 +140,9 @@ export function createRequestHandler(deps: RequestRouterDeps): DaemonInvokeFn {
     if (!timingSafeStringEqual(req.token, token)) {
       return unauthorizedResponse();
     }
-    if (req.flags?.record && req.flags?.noRecord) {
-      return mutuallyExclusiveRecordFlagsResponse();
-    }
+    registerParameterizedFillDiagnosticValue(req);
+    const invalidRecordingFlags = recordingFlagsResponse(req);
+    if (invalidRecordingFlags) return invalidRecordingFlags;
 
     let scope: RequestExecutionScope | undefined;
     try {
@@ -191,6 +196,7 @@ export function createRequestHandler(deps: RequestRouterDeps): DaemonInvokeFn {
                 appleRunnerProvider,
                 appleToolProvider,
                 linuxToolProvider,
+                vegaToolProvider,
                 webProvider:
                   webProvider ??
                   (shouldUseDefaultWebProvider(lockedScope)
@@ -248,6 +254,7 @@ export function createRequestHandler(deps: RequestRouterDeps): DaemonInvokeFn {
       if (!timingSafeStringEqual(req.token, token)) {
         return unauthorizedResponse();
       }
+      registerParameterizedFillDiagnosticValue(req);
 
       let childScope: RequestExecutionScope | undefined;
       try {
@@ -298,6 +305,26 @@ function mutuallyExclusiveRecordFlagsResponse(): DaemonResponse {
   return errorResponse(
     'INVALID_ARGS',
     '--record and --no-record are mutually exclusive; pass at most one.',
+  );
+}
+
+function recordingFlagsResponse(req: DaemonRequest): DaemonResponse | undefined {
+  if (req.flags?.record && req.flags?.noRecord) return mutuallyExclusiveRecordFlagsResponse();
+  if (req.flags?.recordAs !== undefined && req.command !== 'fill') {
+    return errorResponse('INVALID_ARGS', '--record-as is supported only by fill.');
+  }
+  return undefined;
+}
+
+function registerParameterizedFillDiagnosticValue(req: DaemonRequest): void {
+  if (req.command !== 'fill' || typeof req.flags?.recordAs !== 'string') return;
+  registerDiagnosticSensitiveValue(
+    inferFillText({
+      ts: 0,
+      command: 'fill',
+      positionals: req.positionals ?? [],
+      flags: req.flags,
+    }),
   );
 }
 

@@ -156,7 +156,7 @@ test('usage includes agent workflows, config, environment, and examples footers'
   );
   assert.match(
     usageText,
-    /agent-device help tv\s+Use when navigating Android TV or tvOS focus-first surfaces/,
+    /agent-device help tv\s+Use when navigating Android TV, tvOS, or Vega VVD focus-first surfaces/,
   );
   assert.match(
     usageText,
@@ -224,6 +224,9 @@ test('usageForCommand resolves workflow help topic', async () => {
   assert.match(help, /snapshot -s @e7/);
   assert.match(help, /Use plain fill\/type first for ordinary login and form fields/);
   assert.match(help, /--delay-ms intentionally paces character entry/);
+  assert.match(help, /agent-device fill 'id="password"' "\$AD_VAR_PASSWORD" --record-as PASSWORD/);
+  assert.match(help, /published script contain only \$\{PASSWORD\}/);
+  assert.match(help, /Do not record passwords, tokens, or other secrets without --record-as/);
   assert.match(help, /Read-only visible\/state question: use snapshot\/get\/is\/find/);
   assert.match(help, /Use snapshot -i only when refs are needed/);
   assert.match(help, /install-from-source --github-actions-artifact org\/repo:app-debug/);
@@ -332,6 +335,12 @@ test('usageForCommand resolves tv help topic', async () => {
   assert.match(help, /ok, center, and enter are input aliases for select/);
   assert.match(help, /do not switch to raw adb keyevent/);
   assert.match(help, /Use --platform ios --target tv/);
+  assert.match(help, /agent-device devices --platform vega --target tv/);
+  assert.match(help, /Vega OS uses the exact hold duration through inputd-cli/);
+  assert.match(help, /Use --platform vega --target tv/);
+  assert.match(help, /Initial support is VVD-only/);
+  assert.match(help, /Physical Fire TV devices remain unsupported/);
+  assert.equal(help.match(/\nVega OS:/g)?.length, 1);
 });
 
 test('usageForCommand resolves web help topic', async () => {

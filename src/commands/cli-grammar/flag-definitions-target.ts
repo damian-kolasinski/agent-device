@@ -39,7 +39,14 @@ export const TARGET_FLAG_DEFINITIONS: readonly FlagDefinition[] = [
     names: ['--serial'],
     type: 'string',
     usageLabel: '--serial <serial>',
-    usageDescription: 'Android device serial',
+    usageDescription: 'Android device or Vega VVD serial',
+  },
+  {
+    key: 'stale',
+    names: ['--stale'],
+    type: 'boolean',
+    usageLabel: '--stale',
+    usageDescription: 'Device status: show only claims with a provably stale owner',
   },
   {
     key: 'surface',

@@ -52,6 +52,7 @@ export type CliFlags = CloudProviderProfileFields &
     device?: string;
     udid?: string;
     serial?: string;
+    stale?: boolean;
     iosSimulatorDeviceSet?: string;
     iosXctestrunFile?: string;
     iosXctestDerivedDataPath?: string;
@@ -90,6 +91,8 @@ export type CliFlags = CloudProviderProfileFields &
     recordingScope?: RecordingScope;
     intervalMs?: number;
     delayMs?: number;
+    /** Fill: publish the live text as a late-bound ${VAR} in a recorded .ad script. */
+    recordAs?: string;
     durationMs?: number;
     holdMs?: number;
     jitterPx?: number;

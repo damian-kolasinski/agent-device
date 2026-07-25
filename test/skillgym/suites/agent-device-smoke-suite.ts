@@ -1108,10 +1108,10 @@ const SKILL_GUIDANCE_CASES: Case[] = [
     contract: [
       'Another worktree may have an advisory claim on Android emulator-5554',
       'Need to inspect local ownership without starting or contacting any daemon',
-      'Stage 1 is observational only: device release and --stale are not available yet',
+      'Claims are observational only: device release is unavailable; device status --stale only inspects proven-stale records and does not clean them',
     ],
     task: 'Plan the one command that inspects this Android device claim directly. Do not use ps, daemon commands, or an unavailable release command.',
-    outputs: [plannedCommand('device status')],
+    outputs: [plannedCommand('device status --platform android --serial emulator-5554')],
     forbiddenOutputs: [/\bdaemon\b/i, /\bdevice\s+release\b/i, /\bps\b/i],
     strictFinalOutput: true,
   }),
@@ -1359,6 +1359,44 @@ Treat the recovery message as a warning, not a fatal error. Use the exposed Sear
     forbiddenOutputs: [/\badb\b/i, /\bkeyevent\b/i, /--duration-ms/i, plannedCommand('longpress')],
     strictFinalOutput: true,
     allowOnlyLocalCliHelpCommands: true,
+  }),
+  makeCase({
+    id: 'vega-tv-vvd-remote-lifecycle',
+    contract: [
+      'Platform: Amazon Vega OS TV',
+      'Vega component ID: com.example.vega.main',
+      'Vega device serial: VirtualDevice',
+      'The Vega Virtual Device is not running yet',
+      'Move focus right, then hold select for exactly 725 ms',
+      'Vega capture, selectors, app inventory, and ADB are unsupported',
+      'Initial Vega support is VVD-only; physical Fire TV is unsupported',
+      'The VVD must be stopped after the agent-device session is closed',
+      'If you inspect CLI help, run it raw; do not pipe it through head, grep, jq, or tail',
+    ],
+    task: 'Plan the complete local VVD lifecycle and Vega TV remote flow, including explicit device selection and cleanup.',
+    outputs: [
+      plannedCommand('vega virtual-device start'),
+      /devices\b[^\n]*--platform\s+vega\b[^\n]*--target\s+tv/i,
+      /open\s+com\.example\.vega\.main\b/i,
+      /--serial\s+VirtualDevice\b/i,
+      /tv-remote\s+press\s+right\b/i,
+      /tv-remote\s+press\s+select\b[^\n]*--duration-ms\s+725\b/i,
+      /close\s+com\.example\.vega\.main\b/i,
+      plannedCommand('vega virtual-device stop'),
+    ],
+    forbiddenOutputs: [
+      /\badb\b/i,
+      /\b(?:snapshot|screenshot|apps)\b/i,
+      /(?:^|\n)(?:agent-device\s+)?(?:press|click)\s+@/i,
+      /tv-remote\s+longpress/i,
+      /\bphysical\b/i,
+    ],
+    allowOnlyLocalCliHelpCommands: true,
+    finalOutputInstructions: `
+Final output: only commands, one per line, with no prose or Markdown.
+Every final output line must start with agent-device or vega.
+Do not combine final commands with shell operators such as &&, ||, pipes, or semicolons.
+`.trim(),
   }),
   makeCase({
     id: 'ios-composite-horizontal-tabs-coordinate-fallback',

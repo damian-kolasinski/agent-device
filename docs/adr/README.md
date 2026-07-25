@@ -18,6 +18,19 @@
 | [0014 Session Ref-Frame Lifetime](0014-session-ref-frame-lifetime.md) | ref authorization epochs, complete/partial issuance, pre-side-effect expiration, replay/batch compatibility, and cross-platform stale-mutation policy |
 | [0015 Direct Maestro Compatibility Engine](0015-direct-maestro-engine.md) | Maestro YAML parsing/execution, compatibility observation policy, conformance, performance gates, gesture integration |
 | [0016 Active-Session Script Publication](0016-active-session-script-publication.md) | publishing an armed open-to-destination `.ad` script without closing its live session |
+| [0017 Parameterized Recorded Inputs](0017-parameterized-recorded-inputs.md) | safely authoring sensitive fill inputs as `${VAR}` placeholders across recording, replay, and repair |
 
 ADRs record *why*; the registries and gates they describe are the living source of truth — when
 prose and a registry disagree, the registry wins and the ADR needs a follow-up.
+
+Shape conventions, so consulting an ADR stays cheap:
+
+- **Normative rules first, terse.** Status, then a "Rules at a glance" summary a reader can stop
+  after; full contracts and rationale below it.
+- **Rationale and refuted alternatives stay in the ADR** — they are what stops re-litigating
+  settled ideas — but below the fold.
+- **Process history is deleted once complete, not archived in-file.** Migration plans, per-step
+  landing tables, and point-in-time status change-logs go to git history; the Status section keeps
+  one line saying so plus any accepted, still-relevant waiver or evidence gap.
+- Once a rule is gate-enforced, the ADR keeps the why and points at the gate rather than restating
+  the rule's details.
