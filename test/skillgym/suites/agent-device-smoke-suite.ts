@@ -451,6 +451,43 @@ const IOS_TEST_APP_DEV_BUILD_OPEN = new RegExp(
   'i',
 );
 
+interface SequentialCommandStep {
+  label: string;
+  regex: RegExp;
+}
+
+/**
+ * Enforces that each step's pattern appears, in order, at or after the position where the
+ * previous step matched — unlike the presence-only OutputMatcher checks above, this catches a
+ * plan that satisfies every individual requirement out of order (for example an early,
+ * unrelated snapshot standing in for the one that must follow a specific action).
+ */
+function assertSequentialCommandSteps(
+  finalOutput: string,
+  steps: readonly SequentialCommandStep[],
+  caseLabel: string,
+) {
+  const lines = normalizedFinalOutput(finalOutput)
+    .split('\n')
+    .map((line) => line.trim())
+    .filter(Boolean);
+  let cursor = 0;
+  for (const step of steps) {
+    let matchIndex = -1;
+    for (let i = cursor; i < lines.length; i++) {
+      if (step.regex.test(lines[i]!)) {
+        matchIndex = i;
+        break;
+      }
+    }
+    assert.ok(
+      matchIndex !== -1,
+      `${caseLabel}: expected step "${step.label}" at or after position ${cursor}. Observed commands:\n${lines.join('\n')}`,
+    );
+    cursor = matchIndex + 1;
+  }
+}
+
 function makeCase(options: {
   id: string;
   contract: string[];
@@ -461,6 +498,7 @@ function makeCase(options: {
   strictFinalOutput?: boolean;
   allowOnlyLocalCliHelpCommands?: boolean;
   finalOutputInstructions?: string;
+  sequentialSteps?: readonly SequentialCommandStep[];
 }): Case {
   return {
     id: options.id,
@@ -483,6 +521,9 @@ function makeCase(options: {
       }
       if (options.allowOnlyLocalCliHelpCommands) {
         assertOnlyLocalCliHelpCommands(report);
+      }
+      if (options.sequentialSteps) {
+        assertSequentialCommandSteps(ctx.finalOutput(), options.sequentialSteps, options.id);
       }
     },
   };
@@ -2641,23 +2682,63 @@ Do not combine final commands with shell operators such as &&, ||, pipes, or sem
       'SpringBoard control labels vary by iOS version and locale; do not assume fixed English strings such as "Add Widget" or "Edit" — use the refs above, sourced from a fresh snapshot -i, instead',
     ],
     task: 'Plan the commands to open SpringBoard, enter edit mode, open the widget gallery with @e30, search it for "Calendar" using @e31, select the result using the documented coordinate fallback for the unlabeled search-result row, place the widget with @e35, reopen Agent Device Tester to resume app automation, and close the session.',
-    outputs: [
-      plannedCommand('open com.apple.springboard'),
-      /--platform ios/i,
-      /snapshot\b[^\n]*-i\b/i,
-      plannedCommand('longpress'),
-      /(?:^|\n)(?:agent-device\s+)?(?:press|click)\s+@e30\b/i,
-      /(?:^|\n)(?:agent-device\s+)?fill\s+@e31\b[^\n]*Calendar/i,
-      /(?:^|\n)(?:agent-device\s+)?screenshot\b/i,
-      RAW_COORDINATE_TARGET,
-      /(?:^|\n)(?:agent-device\s+)?(?:press|click)\s+@e35\b/i,
-      plannedCommand('open com.callstack.agentdevicelab'),
-      plannedCommand('close'),
-    ],
+    outputs: [/--platform ios/i],
     forbiddenOutputs: [
       plannedCommandAlternatives(['widget', 'widget add']),
       /widget\s+add/i,
       /label=["'](?:Add Widget|Edit|Done)["']/i,
+    ],
+    // Presence-only matchers would let an out-of-order or invented-ref plan pass (an early
+    // unrelated snapshot, a selector-based longpress instead of the required empty-space
+    // coordinate long-press, or a coordinate press standing in for any of the ref-driven
+    // steps). Bind each fresh snapshot, ref, and coordinate fallback to its documented
+    // SpringBoard step in the order the workflow actually requires.
+    sequentialSteps: [
+      {
+        label: 'open SpringBoard',
+        regex: /^(?:agent-device\s+)?open\s+com\.apple\.springboard\b/i,
+      },
+      {
+        label: 'empty-space long-press to enter edit mode (raw coordinates, not a selector)',
+        regex: /^(?:agent-device\s+)?longpress\s+-?\d+(?:\.\d+)?\s+-?\d+(?:\.\d+)?\b/i,
+      },
+      {
+        label: 'fresh snapshot -i exposing @e30',
+        regex: /^(?:agent-device\s+)?snapshot\b.*-i\b/i,
+      },
+      {
+        label: 'press/click @e30 to open the widget gallery',
+        regex: /^(?:agent-device\s+)?(?:press|click)\s+@e30\b/i,
+      },
+      {
+        label: 'fresh snapshot -i exposing @e31',
+        regex: /^(?:agent-device\s+)?snapshot\b.*-i\b/i,
+      },
+      {
+        label: 'fill @e31 with "Calendar" to search the gallery',
+        regex: /^(?:agent-device\s+)?fill\s+@e31\b.*calendar/i,
+      },
+      {
+        label: 'screenshot before the coordinate fallback',
+        regex: /^(?:agent-device\s+)?screenshot\b/i,
+      },
+      {
+        label: 'raw-coordinate press on the unlabeled search-result row',
+        regex: /^(?:agent-device\s+)?(?:press|click)\s+-?\d+(?:\.\d+)?\s+-?\d+(?:\.\d+)?\b/i,
+      },
+      {
+        label: 'fresh snapshot -i exposing @e35',
+        regex: /^(?:agent-device\s+)?snapshot\b.*-i\b/i,
+      },
+      {
+        label: 'press/click @e35 to place the widget',
+        regex: /^(?:agent-device\s+)?(?:press|click)\s+@e35\b/i,
+      },
+      {
+        label: 'reopen Agent Device Tester',
+        regex: /^(?:agent-device\s+)?open\s+com\.callstack\.agentdevicelab\b/i,
+      },
+      { label: 'close the session', regex: /^(?:agent-device\s+)?close\b/i },
     ],
   }),
   makeCase({
