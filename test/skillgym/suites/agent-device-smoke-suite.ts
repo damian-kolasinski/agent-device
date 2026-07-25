@@ -488,6 +488,12 @@ function assertSequentialCommandSteps(
   }
 }
 
+function runOptionalCaseAssertions(checks: ReadonlyArray<{ active: boolean; run: () => void }>) {
+  for (const check of checks) {
+    if (check.active) check.run();
+  }
+}
+
 function makeCase(options: {
   id: string;
   contract: string[];
@@ -516,15 +522,21 @@ function makeCase(options: {
       });
       assertExpectedOutput(report, ctx, options.outputs);
       assertNoOutputs(ctx.finalOutput(), options.forbiddenOutputs ?? []);
-      if (options.strictFinalOutput) {
-        assertFinalOutputAgentDeviceCommandsOnly(ctx.finalOutput());
-      }
-      if (options.allowOnlyLocalCliHelpCommands) {
-        assertOnlyLocalCliHelpCommands(report);
-      }
-      if (options.sequentialSteps) {
-        assertSequentialCommandSteps(ctx.finalOutput(), options.sequentialSteps, options.id);
-      }
+      runOptionalCaseAssertions([
+        {
+          active: options.strictFinalOutput === true,
+          run: () => assertFinalOutputAgentDeviceCommandsOnly(ctx.finalOutput()),
+        },
+        {
+          active: options.allowOnlyLocalCliHelpCommands === true,
+          run: () => assertOnlyLocalCliHelpCommands(report),
+        },
+        {
+          active: options.sequentialSteps !== undefined,
+          run: () =>
+            assertSequentialCommandSteps(ctx.finalOutput(), options.sequentialSteps!, options.id),
+        },
+      ]);
     },
   };
 }
