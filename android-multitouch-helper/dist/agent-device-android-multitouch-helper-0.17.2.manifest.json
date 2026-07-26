@@ -1,0 +1,10 @@
+{
+  "name": "android-multitouch-helper",
+  "version": "0.17.2",
+  "assetName": "agent-device-android-multitouch-helper-0.17.2.apk",
+  "sha256": "e50fe5576ae7edbb9ae18414ae65d094de416ba3e0f6e418ac3cdc319e491a0d",
+  "packageName": "com.callstack.agentdevice.multitouchhelper",
+  "versionCode": 17002,
+  "instrumentationRunner": "com.callstack.agentdevice.multitouchhelper/.MultiTouchInstrumentation",
+  "statusProtocol": "android-multitouch-helper-v1"
+}
