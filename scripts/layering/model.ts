@@ -40,6 +40,11 @@ const TARGET_DAG_RANK = new Map([
 
 export const RANKED_ZONES: ReadonlySet<string> = new Set(TARGET_DAG_RANK.keys());
 
+/** Spine rank of a zone, or `null` when the zone is intentionally unranked. */
+export function zoneRank(zone: string): number | null {
+  return TARGET_DAG_RANK.get(zone) ?? null;
+}
+
 // Zones deliberately left OUT of the ranked spine. They are NOT unenforced: every file
 // in them is still subject to the global production value-import cycle rejection (R4)
 // and the R1-R3 move rules. They only opt out of spine back-edge ranking, for one of
@@ -144,7 +149,7 @@ export function topFolder(file: string): string {
   return match ? match[1]! : '(root)';
 }
 
-function targetDagZone(file: string): string {
+export function targetDagZone(file: string): string {
   if (file.startsWith('src/daemon/client/')) return 'daemon-client';
   if (file.startsWith('src/daemon/')) return 'daemon-server';
   return topFolder(file);
@@ -287,12 +292,27 @@ function findCyclePath(
   throw new Error(`Expected a cycle inside strongly connected component: ${component.join(', ')}`);
 }
 
-export function backEdgePair(edge: ResolvedImportEdge): string | null {
-  if (edge.dynamic || edge.typeOnly || edge.fromZone === edge.toZone) return null;
+function spineInversionPair(edge: ResolvedImportEdge): string | null {
+  if (edge.fromZone === edge.toZone) return null;
   const fromRank = TARGET_DAG_RANK.get(edge.fromZone);
   const toRank = TARGET_DAG_RANK.get(edge.toZone);
   if (fromRank === undefined || toRank === undefined || fromRank >= toRank) return null;
   return `${edge.fromZone} -> ${edge.toZone}`;
+}
+
+export function backEdgePair(edge: ResolvedImportEdge): string | null {
+  if (edge.dynamic || edge.typeOnly) return null;
+  return spineInversionPair(edge);
+}
+
+/**
+ * The same ranking applied to TYPE-ONLY edges. The gate ignores them (a type-only import
+ * costs nothing at runtime), but a type-only edge still says "this zone is declared in
+ * terms of that one", so the graph viewer reports them.
+ */
+export function typeInversionPair(edge: ResolvedImportEdge): string | null {
+  if (edge.dynamic || !edge.typeOnly) return null;
+  return spineInversionPair(edge);
 }
 
 export function collectBackEdges(edges: readonly ResolvedImportEdge[]): BackEdgeMap {
