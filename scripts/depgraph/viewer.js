@@ -423,44 +423,80 @@
 
   const detail = document.getElementById('detail');
 
-  function escapeHtml(value) {
-    return value.replace(/[&<>"']/g, (character) => `&#${character.charCodeAt(0)};`);
+  // Everything below builds DOM nodes and sets `textContent` rather than assembling an
+  // HTML string. The graph payload is read out of the page (`textContent` of an inline
+  // JSON block), which makes any interpolation of it into `innerHTML` a text-to-HTML
+  // reinterpretation — CodeQL flagged four, and hand-escaping only moves the problem to
+  // "did every interpolation remember to escape". With no HTML sink there is nothing to
+  // escape: a file path containing `<` renders as that path.
+  function el(tag, props, children) {
+    const node = document.createElement(tag);
+    for (const [key, value] of Object.entries(props ?? {})) {
+      if (value === undefined || value === false) continue;
+      if (key === 'text') node.textContent = String(value);
+      else if (key === 'class') node.className = value;
+      else if (key === 'style') node.setAttribute('style', value);
+      else if (key.startsWith('data-') || key.startsWith('aria-')) {
+        node.setAttribute(key, String(value));
+      } else node[key] = value;
+    }
+    for (const child of children ?? []) {
+      if (child === null || child === undefined || child === false) continue;
+      node.append(child);
+    }
+    return node;
+  }
+
+  function replaceChildren(target, children) {
+    target.replaceChildren(...children.filter(Boolean));
   }
 
   function edgeTags(edge, index) {
     const tags = [];
-    if (edge[2] !== 0) tags.push(`<span class="tag ${KIND[edge[2]]}">${KIND[edge[2]]}</span>`);
-    if (edge[3] & FLAG_BACK) tags.push('<span class="tag back">back-edge</span>');
+    if (edge[2] !== 0)
+      tags.push(el('span', { class: `tag ${KIND[edge[2]]}`, text: KIND[edge[2]] }));
+    if (edge[3] & FLAG_BACK) tags.push(el('span', { class: 'tag back', text: 'back-edge' }));
     if (edge[3] & FLAG_TYPE_INVERSION) {
-      tags.push('<span class="tag redundant">type inversion</span>');
+      tags.push(el('span', { class: 'tag redundant', text: 'type inversion' }));
     }
-    if (edge[3] & FLAG_REDUNDANT) tags.push('<span class="tag redundant">redundant</span>');
-    if (cycleEdges.has(index)) tags.push('<span class="tag back">cycle</span>');
-    return tags.join('');
+    if (edge[3] & FLAG_REDUNDANT) {
+      tags.push(el('span', { class: 'tag redundant', text: 'redundant' }));
+    }
+    if (cycleEdges.has(index)) tags.push(el('span', { class: 'tag back', text: 'cycle' }));
+    return tags;
   }
 
   function depList(title, edgeIndices, endpoint) {
+    const heading = el('h3', { text: `${title} — ${edgeIndices.length}` });
     if (edgeIndices.length === 0) {
-      return `<div class="deps"><h3>${title} — 0</h3><p class="empty">none</p></div>`;
+      return el('div', { class: 'deps' }, [heading, el('p', { class: 'empty', text: 'none' })]);
     }
     const rows = edgeIndices
       .map((index) => ({ index, other: edges[index][endpoint] }))
       .sort((left, right) => nodes[left.other].id.localeCompare(nodes[right.other].id))
-      .map(
-        ({ index, other }) =>
-          `<li><button type="button" data-goto="${other}">${escapeHtml(
-            nodes[other].id,
-          )}${edgeTags(edges[index], index)}</button></li>`,
-      )
-      .join('');
-    return `<div class="deps"><h3>${title} — ${edgeIndices.length}</h3><ul>${rows}</ul></div>`;
+      .map(({ index, other }) =>
+        el('li', {}, [
+          el('button', { type: 'button', 'data-goto': other }, [
+            el('span', { text: nodes[other].id }),
+            ...edgeTags(edges[index], index),
+          ]),
+        ]),
+      );
+    return el('div', { class: 'deps' }, [heading, el('ul', {}, rows)]);
+  }
+
+  function fact(term, value) {
+    return el('div', { class: 'fact' }, [
+      el('dt', { text: term }),
+      el('dd', { text: String(value) }),
+    ]);
   }
 
   function select(index) {
     state.selected = index;
     if (index === null) {
       detail.classList.remove('open');
-      detail.innerHTML = '';
+      detail.replaceChildren();
       syncToggle();
       schedule();
       return;
@@ -473,35 +509,44 @@
     const redundantOut = outEdges[index].filter((edge) => edges[edge][3] & FLAG_REDUNDANT).length;
 
     const pills = [
-      `<span class="pill rank">${escapeHtml(zone.id)}${
-        zone.rank === null ? ' · unranked' : ` · rank ${zone.rank}`
-      }</span>`,
+      el('span', {
+        class: 'pill rank',
+        text: `${zone.id}${zone.rank === null ? ' · unranked' : ` · rank ${zone.rank}`}`,
+      }),
     ];
     if (cycleIndex !== undefined) {
       pills.push(
-        `<span class="pill critical">${escapeHtml(data.cycles[cycleIndex].kind)} cycle</span>`,
+        el('span', { class: 'pill critical', text: `${data.cycles[cycleIndex].kind} cycle` }),
       );
     }
-    if (backOut > 0) pills.push(`<span class="pill critical">${backOut} back-edge</span>`);
+    if (backOut > 0) {
+      pills.push(el('span', { class: 'pill critical', text: `${backOut} back-edge` }));
+    }
     if (redundantOut > 0) {
-      pills.push(`<span class="pill warning">${redundantOut} redundant</span>`);
+      pills.push(el('span', { class: 'pill warning', text: `${redundantOut} redundant` }));
     }
 
-    detail.innerHTML = `
-      <div class="detail-head">
-        <h2>src/${escapeHtml(node.id)}</h2>
-        <button type="button" class="close" data-close aria-label="Close details">×</button>
-      </div>
-      <div>${pills.join(' ')}</div>
-      <dl class="facts">
-        <div class="fact"><dt>Dependents</dt><dd>${node.in}</dd></div>
-        <div class="fact"><dt>Dependencies</dt><dd>${node.out}</dd></div>
-        <div class="fact"><dt>Lines</dt><dd>${node.loc}</dd></div>
-        <div class="fact"><dt>Depth to sink</dt><dd>${node.lvl}</dd></div>
-      </dl>
-      ${depList('Imported by', inEdges[index], 0)}
-      ${depList('Imports', outEdges[index], 1)}
-    `;
+    replaceChildren(detail, [
+      el('div', { class: 'detail-head' }, [
+        el('h2', { text: `src/${node.id}` }),
+        el('button', {
+          type: 'button',
+          class: 'close',
+          'data-close': '',
+          'aria-label': 'Close details',
+          text: '×',
+        }),
+      ]),
+      el('div', {}, pills),
+      el('dl', { class: 'facts' }, [
+        fact('Dependents', node.in),
+        fact('Dependencies', node.out),
+        fact('Lines', node.loc),
+        fact('Depth to sink', node.lvl),
+      ]),
+      depList('Imported by', inEdges[index], 0),
+      depList('Imports', outEdges[index], 1),
+    ]);
     detail.classList.add('open');
     syncToggle();
     schedule();
@@ -554,9 +599,15 @@
         tone: redundant === 0 ? 'is-ok' : 'is-warning',
       },
     ];
-    document.getElementById('stats').innerHTML = cells
-      .map((cell) => `<div class="stat ${cell.tone}"><b>${cell.value}</b>${cell.label}</div>`)
-      .join('');
+    replaceChildren(
+      document.getElementById('stats'),
+      cells.map((cell) =>
+        el('div', { class: `stat ${cell.tone}` }, [
+          el('b', { text: String(cell.value) }),
+          document.createTextNode(cell.label),
+        ]),
+      ),
+    );
     document.getElementById('commit').textContent = `@ ${data.generated.commit}`;
   }
 
@@ -566,32 +617,45 @@
       const rankRight = zones[right].rank ?? 99;
       return rankLeft - rankRight || zones[left].id.localeCompare(zones[right].id);
     });
-    document.getElementById('legend').innerHTML = ordered
-      .map((index) => {
+    replaceChildren(
+      document.getElementById('legend'),
+      ordered.map((index) => {
         const zone = zones[index];
         const rank = zone.rank === null ? 'unranked' : `rank ${zone.rank}`;
-        const hidden = state.hiddenZones.has(index);
-        return `<button type="button" class="legend-row" data-zone="${index}" aria-pressed="${!hidden}">
-          <span class="swatch" style="background:${zoneColor(index)}"></span>
-          <span class="zone">${escapeHtml(zone.id)} <i>${rank}</i></span>
-          <span class="count">${zone.files}</span>
-        </button>`;
-      })
-      .join('');
+        return el(
+          'button',
+          {
+            type: 'button',
+            class: 'legend-row',
+            'data-zone': index,
+            'aria-pressed': String(!state.hiddenZones.has(index)),
+          },
+          [
+            el('span', { class: 'swatch', style: `background:${zoneColor(index)}` }),
+            el('span', { class: 'zone' }, [
+              document.createTextNode(`${zone.id} `),
+              el('i', { text: rank }),
+            ]),
+            el('span', { class: 'count', text: String(zone.files) }),
+          ],
+        );
+      }),
+    );
   }
 
   function renderHotspots() {
     const top = [...nodes.keys()]
       .sort((left, right) => nodes[right].in - nodes[left].in || nodes[right].out - nodes[left].out)
       .slice(0, 14);
-    document.getElementById('hotspots').innerHTML = top
-      .map(
-        (index) =>
-          `<button type="button" class="hotspot" data-focus="${index}"><span>${escapeHtml(
-            nodes[index].id,
-          )}</span><span class="metric">${nodes[index].in}</span></button>`,
-      )
-      .join('');
+    replaceChildren(
+      document.getElementById('hotspots'),
+      top.map((index) =>
+        el('button', { type: 'button', class: 'hotspot', 'data-focus': index }, [
+          el('span', { text: nodes[index].id }),
+          el('span', { class: 'metric', text: String(nodes[index].in) }),
+        ]),
+      ),
+    );
   }
 
   const layoutHint = document.getElementById('layout-hint');
