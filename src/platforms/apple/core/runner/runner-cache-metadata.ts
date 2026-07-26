@@ -342,7 +342,12 @@ export function resolveRunnerSigningBuildSettings(
   const teamId = env.AGENT_DEVICE_IOS_TEAM_ID?.trim() || '';
   const configuredIdentity = env.AGENT_DEVICE_IOS_SIGNING_IDENTITY?.trim() || '';
   const profile = env.AGENT_DEVICE_IOS_PROVISIONING_PROFILE?.trim() || '';
-  const args = ['CODE_SIGN_STYLE=Automatic'];
+  // An explicitly configured profile only takes effect under manual signing: Xcode ignores
+  // PROVISIONING_PROFILE_SPECIFIER when CODE_SIGN_STYLE=Automatic, silently falling back to
+  // a team-managed profile. That makes AGENT_DEVICE_IOS_PROVISIONING_PROFILE a no-op exactly
+  // when it is needed — on a device the developer cannot register through Xcode automatic
+  // signing, where a manually created profile is the only way to build the runner.
+  const args = [`CODE_SIGN_STYLE=${profile ? 'Manual' : 'Automatic'}`];
   if (teamId) {
     args.push(`DEVELOPMENT_TEAM=${teamId}`);
   }

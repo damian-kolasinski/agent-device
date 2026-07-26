@@ -493,10 +493,19 @@ test('resolveRunnerSigningBuildSettings applies optional overrides when provided
     true,
   );
   assert.deepEqual(settings, [
-    'CODE_SIGN_STYLE=Automatic',
+    // Manual, because a profile was configured: Xcode ignores an explicit
+    // PROVISIONING_PROFILE_SPECIFIER under automatic signing.
+    'CODE_SIGN_STYLE=Manual',
     'DEVELOPMENT_TEAM=ABCDE12345',
     'CODE_SIGN_IDENTITY=Apple Development',
     'PROVISIONING_PROFILE_SPECIFIER=My Profile',
+  ]);
+});
+
+test('resolveRunnerSigningBuildSettings keeps automatic signing when only a team is provided', () => {
+  assert.deepEqual(resolveRunnerSigningBuildSettings({ AGENT_DEVICE_IOS_TEAM_ID: 'ABCDE12345' }, true), [
+    'CODE_SIGN_STYLE=Automatic',
+    'DEVELOPMENT_TEAM=ABCDE12345',
   ]);
 });
 
