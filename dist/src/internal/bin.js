@@ -1,0 +1,5 @@
+var t,e,r,s;let c,n=process.argv.slice(2);function i(t){return"--help"===t||"-h"===t}function o(t){import("../cli.js").then(({runCli:e})=>e(t)).catch(_)}function _(t){process.stderr.write(`${t instanceof Error?t.message:String(t)}
+`),process.exit(1)}1===(e=t=n).length&&("--version"===(r=e[0])||"-V"===r)&&(import("../9671.js").then(({readVersion:t})=>{process.stdout.write(`${t()}
+`)}).catch(_),1)||0===t.length&&(import("../args.js").then(({usage:t})=>{process.stdout.write(`${t()}
+`),process.exit(1)}).catch(_),1)||void 0!==(c=function(t){var e,r,s,c;switch(t.length){case 1:return"help"===(e=t[0])||i(e)?null:void 0;case 2:return r=t[0],s=t[1],"help"===r?s:(c=r,i(s)?c:void 0);default:return}}(s=t))&&(import("../args.js").then(({usage:t,usageForCommand:e})=>{if(null===c)return void process.stdout.write(`${t()}
+`);let r=e(c);r?process.stdout.write(r):o(s)}).catch(_),1)||("mcp"!==n[0]||n.includes("--help")||n.includes("-h")?o(n):import("../server.js").then(({runAgentDeviceMcpServer:t})=>t()).catch(_));
