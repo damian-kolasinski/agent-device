@@ -18,8 +18,25 @@ import {
 } from './runner-contract.ts';
 import type { RunnerSession } from './runner-session-types.ts';
 
-export const RUNNER_STARTUP_TIMEOUT_MS = 45_000;
-export const RUNNER_COMMAND_TIMEOUT_MS = 45_000;
+const DEFAULT_RUNNER_TIMEOUT_MS = 45_000;
+
+/**
+ * Reads an override for the runner startup and command budgets.
+ *
+ * 45s is comfortable for a simulator, but a cold UI-test runner on a slow physical device can
+ * take longer than that just to launch, so startup expires and the runner is torn down
+ * mid-boot -- surfacing as `BUILD INTERRUPTED` with no useful diagnostic. Ignores
+ * non-positive and unparsable values so a bad env cannot remove the budget entirely.
+ */
+function resolveRunnerTimeoutMs(): number {
+  const raw = process.env.AGENT_DEVICE_RUNNER_TIMEOUT_MS?.trim();
+  if (!raw) return DEFAULT_RUNNER_TIMEOUT_MS;
+  const parsed = Number(raw);
+  return Number.isFinite(parsed) && parsed > 0 ? parsed : DEFAULT_RUNNER_TIMEOUT_MS;
+}
+
+export const RUNNER_STARTUP_TIMEOUT_MS = resolveRunnerTimeoutMs();
+export const RUNNER_COMMAND_TIMEOUT_MS = resolveRunnerTimeoutMs();
 const RUNNER_CONNECT_ATTEMPT_INTERVAL_MS = 250;
 const RUNNER_CONNECT_RETRY_BASE_DELAY_MS = 300;
 const RUNNER_CONNECT_RETRY_MAX_DELAY_MS = 2_000;
