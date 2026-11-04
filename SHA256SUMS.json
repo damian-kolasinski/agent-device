@@ -1,0 +1,16 @@
+{
+  "Fixture.swift": "45b38e856fab67426edbb4c5ae5c958fd4b638e60db68bef92d2b15f0822566c",
+  "README.md": "a9fa7763448d0c760107197a99ad240409e7832979e56cf781967af11915e905",
+  "aggregates.json": "7b9371642ac513b4ce56757cc870b1de7604067ddc5895054386edad2e0304d2",
+  "batch.mjs": "8ae7b9ec522c2eb12e01218dd0ec6c4de9601a7439592b172d465d48af4f5e31",
+  "cases.json": "6158a2005378419a897dea1beea4f9b5a88b352986e2634128fae4db86bce6b8",
+  "ci-status.json": "60afa531ba508f6b28000ff8191caaa884447e5a09edf012c428985e8fdef5f0",
+  "cleanup.json": "db741cc26ad66c7b66f4c5e6d90a679c5774a1388b5a88eaeb20ac85753d09c7",
+  "historical-5b26c9c-mutation.json": "85b9885c74ae088e71eeed637a443ed5139a15af143bc9f87e8af214296be888",
+  "historical-5b26c9c-validation.json": "6cf49db692f770fad9057127c22b4e64a8dd3438794334058cae3a1c412e44f6",
+  "initial-run-status.json": "bddb467e692e3a9b3d41e9550956348218f8b78de0b72e8bd6acdc21800d00d8",
+  "live-proof.py": "9afe216599be706a2af9343bcaff8cb7a0c81561fb70842b0d727bb4b87300c5",
+  "provenance.json": "c81d074e3685dc61b1b4f1292845b4f5637c862a6ababb8f2353d08b7454b76a",
+  "runner-excerpts.log": "0ce8a65e9d15f4516da21e169fa313922a8597c2f2496d806ef9ba5f9a63b4c4",
+  "validation-receipt.json": "fda928890a3d15472bc68e304be1bb949a0915452c72d2bdb0bb85d25bccc6b3"
+}

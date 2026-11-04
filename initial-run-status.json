@@ -1,0 +1,19 @@
+{
+  "head": "abf90adaea15e7104cff4c1bff4979f500e4e810",
+  "base": "7d42395ff7e1c03b643c2cf56683808bf5427cf3",
+  "detailedCorrectnessCasesPassed": 16,
+  "performanceStatus": "aborted",
+  "successfulSamplesBeforeAbort": 15,
+  "failedObservation": {
+    "version": "base",
+    "round": 2,
+    "variant": "existing_unfocused",
+    "fillSucceeded": true,
+    "code": "COMMAND_FAILED",
+    "reason": "wait_capture_stalled",
+    "readableCaptures": 0,
+    "timeoutMs": 5000
+  },
+  "partialSamplesReused": false,
+  "cleanupCompleted": true
+}

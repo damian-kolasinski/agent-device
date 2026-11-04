@@ -1,0 +1,181 @@
+{
+  "base": "c8ad8fb1257787ce0973cf74271cb9a4fafb51d9",
+  "head": "5b26c9c6aae3ac7b2eb257e1d16f011e5284c1ec",
+  "affectedGate": {
+    "command": "pnpm check:affected --run --head 5b26c9c6aae3ac7b2eb257e1d16f011e5284c1ec",
+    "status": "passed",
+    "exactCommit": true,
+    "checkoutChanged": false,
+    "checks": [
+      {
+        "id": "format",
+        "status": "passed",
+        "reason": null
+      },
+      {
+        "id": "lint",
+        "status": "passed",
+        "reason": null
+      },
+      {
+        "id": "typecheck",
+        "status": "passed",
+        "reason": null
+      },
+      {
+        "id": "layering",
+        "status": "passed",
+        "reason": null
+      },
+      {
+        "id": "fallow",
+        "status": "passed",
+        "reason": null
+      },
+      {
+        "id": "native-dupes",
+        "status": "passed",
+        "reason": null
+      },
+      {
+        "id": "build",
+        "status": "passed",
+        "reason": null
+      },
+      {
+        "id": "vitest-related",
+        "status": "passed",
+        "reason": null
+      },
+      {
+        "id": "unit",
+        "status": "passed",
+        "reason": null
+      },
+      {
+        "id": "swift-runner-ios",
+        "status": "skipped",
+        "reason": "GitHub-authoritative (jobs: Apple / Smoke Tests, Conformance Differential / iOS Conformance Differential, Perf Nightly / iOS Command Perf, XCTest Nightly / iOS Runner Full XCTest Suite (${{ matrix.leg.name }}))"
+      },
+      {
+        "id": "swift-runner-macos",
+        "status": "skipped",
+        "reason": "GitHub-authoritative (jobs: Apple / Smoke Tests)"
+      },
+      {
+        "id": "web-smoke",
+        "status": "skipped",
+        "reason": "GitHub-authoritative (jobs: Apple / Smoke Tests, Integration Tests, Lint, Typecheck & Package, Perf Nightly / Android Command Perf, Perf Nightly / iOS Command Perf)"
+      },
+      {
+        "id": "command-docs",
+        "status": "passed",
+        "reason": null
+      },
+      {
+        "id": "docs-links",
+        "status": "passed",
+        "reason": null
+      },
+      {
+        "id": "docs-prose",
+        "status": "passed",
+        "reason": null
+      },
+      {
+        "id": "xctest-selection",
+        "status": "passed",
+        "reason": null
+      },
+      {
+        "id": "packaged-runner-swift",
+        "status": "passed",
+        "reason": null
+      },
+      {
+        "id": "replay-ios",
+        "status": "skipped",
+        "reason": "parked, workflow_dispatch only (Replay Manual / iOS Replay Suite)"
+      },
+      {
+        "id": "replay-ios-device",
+        "status": "skipped",
+        "reason": "parked, workflow_dispatch only (Replay Manual / iOS Replay Suite)"
+      },
+      {
+        "id": "replay-macos",
+        "status": "skipped",
+        "reason": "GitHub-authoritative (jobs: Apple / Smoke Tests)"
+      },
+      {
+        "id": "replay-linux",
+        "status": "skipped",
+        "reason": "GitHub-authoritative (jobs: Linux / Smoke Tests)"
+      },
+      {
+        "id": "linux-command-evidence",
+        "status": "skipped",
+        "reason": "GitHub-authoritative (jobs: Linux / Smoke Tests)"
+      },
+      {
+        "id": "replay-android",
+        "status": "skipped",
+        "reason": "parked, workflow_dispatch only (Replay Manual / Android Full Emulator Suite)"
+      }
+    ]
+  },
+  "native": {
+    "native-new-tests": {
+      "result": "Passed",
+      "totalTestCount": 9,
+      "passedTests": 9,
+      "failedTests": 0,
+      "skippedTests": 0
+    },
+    "native-retained-tests": {
+      "result": "Passed",
+      "totalTestCount": 28,
+      "passedTests": 28,
+      "failedTests": 0,
+      "skippedTests": 0
+    },
+    "base-native-tests": {
+      "result": "Failed",
+      "totalTestCount": 8,
+      "passedTests": 5,
+      "failedTests": 3,
+      "skippedTests": 0
+    },
+    "mutation-native-tests": {
+      "result": "Failed",
+      "totalTestCount": 1,
+      "passedTests": 0,
+      "failedTests": 1,
+      "skippedTests": 0
+    }
+  },
+  "originalEightRegressionCases": {
+    "headPassed": 8,
+    "basePassed": 5,
+    "baseFailed": 3
+  },
+  "baseComparison": "Same original eight regression tests and witness fixture overlaid on base; text-entry implementation unchanged.",
+  "mutation": "In a disposable base checkout with head production source, defer caret preparation for newly focused inputs as well. The caret-preparation test fails (one tap instead of two). Reviewed source remains unchanged.",
+  "builds": {
+    "iosArm64": {
+      "command": "pnpm build:xcuitest:ios",
+      "status": "passed"
+    }
+  },
+  "benchmarkIsolation": "The base text-entry implementation matches the named base. Its regression fixture/test overlay is disabled during timing with AGENT_DEVICE_XCUITEST_INCLUDE_UNIT_TESTS=0; both versions build separate runners and use separate daemon state.",
+  "correctnessReproducer": "Both versions passed all 13 success/failure cases, plus exact underlying-text and untouched-neighbor assertions for every timed fill.",
+  "review": "Independent review completed; no remaining findings.",
+  "cleanup": "All owned simulator leases, synthetic app installations, sessions and daemons cleaned.",
+  "ci": "CI-authoritative and workflow_dispatch checks skipped by the local gate remain CI obligations. Physical-device execution was not performed.",
+  "unitTests": {
+    "passed": 17138,
+    "skipped": 1,
+    "filesPassed": 1918,
+    "note": "Existing skipped test retained."
+  }
+}

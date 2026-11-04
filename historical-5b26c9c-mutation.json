@@ -1,0 +1,17 @@
+{
+  "head": "5b26c9c6aae3ac7b2eb257e1d16f011e5284c1ec",
+  "base": "c8ad8fb1257787ce0973cf74271cb9a4fafb51d9",
+  "historicalOnly": true,
+  "mutation": {
+    "file": "apple/runner/AgentDeviceRunner/AgentDeviceRunnerUITests/RunnerTests+TextEntry.swift",
+    "from": "let defersCaretTap = reader.target.reusesCurrentFocus",
+    "to": "let defersCaretTap = true"
+  },
+  "test": "RunnerTests/testNewlyFocusedReplacementKeepsCaretPreparation",
+  "assertion": "XCTAssertEqual failed: (\"1\") is not equal to (\"2\")",
+  "result": "Failed",
+  "passedTests": 0,
+  "failedTests": 1,
+  "skippedTests": 0,
+  "sourceSummarySha256": "2171da5dd4496ec69b78989d2e0c49b44e42575f0a65e69b15b9085f3e328d39"
+}

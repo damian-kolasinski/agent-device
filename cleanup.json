@@ -1,0 +1,9 @@
+{
+  "completed": true,
+  "sessionsClosed": true,
+  "daemonsStoppedWithClean": true,
+  "syntheticAppUninstalled": true,
+  "simulatorShutdownIfBootedHere": true,
+  "simulatorLeaseReleased": true,
+  "errors": []
+}

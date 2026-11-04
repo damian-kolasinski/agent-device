@@ -1,0 +1,91 @@
+{
+  "base": "7d42395ff7e1c03b643c2cf56683808bf5427cf3",
+  "head": "abf90adaea15e7104cff4c1bff4979f500e4e810",
+  "method": "Five paired rounds with alternating version order and rotating operation order. Coordinate fill step durations exclude setup, observation, and exact app-owned actual-value/unchanged-neighbour assertions. All 60 commands succeeded. All samples retained locally. No full-suite gain claim.",
+  "results": [
+    {
+      "variant": "empty_focused",
+      "pairs": 5,
+      "mediansMs": {
+        "head": 1654,
+        "base": 2447
+      },
+      "reductionPercent": 32.4,
+      "headFasterPairs": 5,
+      "successfulCommands": {
+        "head": 5,
+        "base": 5
+      }
+    },
+    {
+      "variant": "existing_focused",
+      "pairs": 5,
+      "mediansMs": {
+        "head": 2686,
+        "base": 4070
+      },
+      "reductionPercent": 34.0,
+      "headFasterPairs": 5,
+      "successfulCommands": {
+        "head": 5,
+        "base": 5
+      }
+    },
+    {
+      "variant": "clear_focused",
+      "pairs": 5,
+      "mediansMs": {
+        "head": 1388,
+        "base": 2725
+      },
+      "reductionPercent": 49.1,
+      "headFasterPairs": 5,
+      "successfulCommands": {
+        "head": 5,
+        "base": 5
+      }
+    },
+    {
+      "variant": "empty_unfocused",
+      "pairs": 5,
+      "mediansMs": {
+        "head": 2289,
+        "base": 2209
+      },
+      "reductionPercent": -3.6,
+      "headFasterPairs": 1,
+      "successfulCommands": {
+        "head": 5,
+        "base": 5
+      }
+    },
+    {
+      "variant": "existing_unfocused",
+      "pairs": 5,
+      "mediansMs": {
+        "head": 4033,
+        "base": 3940
+      },
+      "reductionPercent": -2.4,
+      "headFasterPairs": 0,
+      "successfulCommands": {
+        "head": 5,
+        "base": 5
+      }
+    },
+    {
+      "variant": "clear_unfocused",
+      "pairs": 5,
+      "mediansMs": {
+        "head": 2882,
+        "base": 2681
+      },
+      "reductionPercent": -7.5,
+      "headFasterPairs": 2,
+      "successfulCommands": {
+        "head": 5,
+        "base": 5
+      }
+    }
+  ]
+}

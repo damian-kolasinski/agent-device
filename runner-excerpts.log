@@ -1,0 +1,192 @@
+Ephemeral command IDs are replaced consistently by the case ID. Timestamps, process identifiers and phase duration fields are omitted. Synthetic application identifiers are replaced by <synthetic-app>.
+
+CASE focused-empty-fill
+AGENT_DEVICE_RUNNER_COMMAND_ACCEPTED command=type commandId=focused-empty-fill
+AGENT_DEVICE_RUNNER_TEXT_ENTRY_FOCUS evidence=current-input-reports-keyboard-focus polls=0
+AGENT_DEVICE_RUNNER_TEXT_ENTRY_PHASE commandId=focused-empty-fill phase=focus chars=9 mode=replacement
+AGENT_DEVICE_RUNNER_TEXT_ENTRY_PHASE commandId=focused-empty-fill phase=initial-resolve chars=9 mode=replacement
+AGENT_DEVICE_RUNNER_TEXT_ENTRY_PHASE commandId=focused-empty-fill phase=type-first chars=1 mode=replacement
+AGENT_DEVICE_RUNNER_TEXT_ENTRY_PHASE commandId=focused-empty-fill phase=warmup chars=1 mode=replacement
+AGENT_DEVICE_RUNNER_TEXT_ENTRY_PHASE commandId=focused-empty-fill phase=type-remaining chars=8 mode=replacement
+AGENT_DEVICE_RUNNER_TEXT_ENTRY_PHASE commandId=focused-empty-fill phase=verify chars=9 mode=replacement
+AGENT_DEVICE_RUNNER_TEXT_ENTRY_PHASE commandId=focused-empty-fill phase=total chars=9 mode=replacement
+AGENT_DEVICE_RUNNER_COMMAND_COMPLETED command=type commandId=focused-empty-fill ok=1
+
+CASE focused-prefilled-replace
+AGENT_DEVICE_RUNNER_COMMAND_ACCEPTED command=type commandId=focused-prefilled-replace
+AGENT_DEVICE_RUNNER_TEXT_ENTRY_FOCUS evidence=current-input-reports-keyboard-focus polls=0
+AGENT_DEVICE_RUNNER_TEXT_ENTRY_PHASE commandId=focused-prefilled-replace phase=focus chars=9 mode=replacement
+AGENT_DEVICE_RUNNER_TEXT_ENTRY_PHASE commandId=focused-prefilled-replace phase=initial-resolve chars=9 mode=replacement
+AGENT_DEVICE_RUNNER_TEXT_ENTRY_CLEAR route=element passes=1 outcome=cleared
+AGENT_DEVICE_RUNNER_TEXT_ENTRY_PHASE commandId=focused-prefilled-replace phase=clear chars=9 mode=replacement
+AGENT_DEVICE_RUNNER_TEXT_ENTRY_PHASE commandId=focused-prefilled-replace phase=type-first chars=1 mode=replacement
+AGENT_DEVICE_RUNNER_TEXT_ENTRY_PHASE commandId=focused-prefilled-replace phase=warmup chars=1 mode=replacement
+AGENT_DEVICE_RUNNER_TEXT_ENTRY_PHASE commandId=focused-prefilled-replace phase=type-remaining chars=8 mode=replacement
+AGENT_DEVICE_RUNNER_TEXT_ENTRY_PHASE commandId=focused-prefilled-replace phase=verify chars=9 mode=replacement
+AGENT_DEVICE_RUNNER_TEXT_ENTRY_PHASE commandId=focused-prefilled-replace phase=total chars=9 mode=replacement
+AGENT_DEVICE_RUNNER_COMMAND_COMPLETED command=type commandId=focused-prefilled-replace ok=1
+
+CASE focused-clear
+AGENT_DEVICE_RUNNER_COMMAND_ACCEPTED command=type commandId=focused-clear
+AGENT_DEVICE_RUNNER_TEXT_ENTRY_FOCUS evidence=current-input-reports-keyboard-focus polls=0
+AGENT_DEVICE_RUNNER_TEXT_ENTRY_PHASE commandId=focused-clear phase=focus chars=0 mode=replacement
+AGENT_DEVICE_RUNNER_TEXT_ENTRY_CLEAR route=element passes=1 outcome=cleared
+AGENT_DEVICE_RUNNER_TEXT_ENTRY_PHASE commandId=focused-clear phase=total chars=0 mode=replacement
+AGENT_DEVICE_RUNNER_COMMAND_COMPLETED command=type commandId=focused-clear ok=1
+
+CASE unfocused-prefilled-replace
+AGENT_DEVICE_RUNNER_COMMAND_ACCEPTED command=type commandId=unfocused-prefilled-replace
+XCTest Tap Application '<synthetic-app>'[0.00, 0.00] -> (220.0, 99.0)
+AGENT_DEVICE_RUNNER_TEXT_ENTRY_FOCUS evidence=input-reports-keyboard-focus polls=1
+AGENT_DEVICE_RUNNER_TEXT_ENTRY_PHASE commandId=unfocused-prefilled-replace phase=focus chars=9 mode=replacement
+AGENT_DEVICE_RUNNER_TEXT_ENTRY_PHASE commandId=unfocused-prefilled-replace phase=initial-resolve chars=9 mode=replacement
+XCTest Tap Application '<synthetic-app>'[0.00, 0.00] -> (386.0, 99.0)
+AGENT_DEVICE_RUNNER_TEXT_ENTRY_CLEAR route=element passes=1 outcome=cleared
+AGENT_DEVICE_RUNNER_TEXT_ENTRY_PHASE commandId=unfocused-prefilled-replace phase=clear chars=9 mode=replacement
+AGENT_DEVICE_RUNNER_TEXT_ENTRY_PHASE commandId=unfocused-prefilled-replace phase=type-first chars=1 mode=replacement
+AGENT_DEVICE_RUNNER_TEXT_ENTRY_PHASE commandId=unfocused-prefilled-replace phase=warmup chars=1 mode=replacement
+AGENT_DEVICE_RUNNER_TEXT_ENTRY_PHASE commandId=unfocused-prefilled-replace phase=type-remaining chars=8 mode=replacement
+AGENT_DEVICE_RUNNER_TEXT_ENTRY_PHASE commandId=unfocused-prefilled-replace phase=verify chars=9 mode=replacement
+AGENT_DEVICE_RUNNER_TEXT_ENTRY_PHASE commandId=unfocused-prefilled-replace phase=total chars=9 mode=replacement
+AGENT_DEVICE_RUNNER_COMMAND_COMPLETED command=type commandId=unfocused-prefilled-replace ok=1
+
+CASE unfocused-clear
+AGENT_DEVICE_RUNNER_COMMAND_ACCEPTED command=type commandId=unfocused-clear
+XCTest Tap Application '<synthetic-app>'[0.00, 0.00] -> (220.0, 99.0)
+AGENT_DEVICE_RUNNER_TEXT_ENTRY_FOCUS evidence=input-reports-keyboard-focus polls=1
+AGENT_DEVICE_RUNNER_TEXT_ENTRY_PHASE commandId=unfocused-clear phase=focus chars=0 mode=replacement
+XCTest Tap Application '<synthetic-app>'[0.00, 0.00] -> (386.0, 99.0)
+AGENT_DEVICE_RUNNER_TEXT_ENTRY_CLEAR route=element passes=1 outcome=cleared
+AGENT_DEVICE_RUNNER_TEXT_ENTRY_PHASE commandId=unfocused-clear phase=total chars=0 mode=replacement
+AGENT_DEVICE_RUNNER_COMMAND_COMPLETED command=type commandId=unfocused-clear ok=1
+
+CASE target-after-neighbour-focus
+AGENT_DEVICE_RUNNER_COMMAND_ACCEPTED command=type commandId=target-after-neighbour-focus
+XCTest Tap Application '<synthetic-app>'[0.00, 0.00] -> (220.0, 99.0)
+AGENT_DEVICE_RUNNER_TEXT_ENTRY_PHASE commandId=target-after-neighbour-focus phase=focus chars=6 mode=replacement
+AGENT_DEVICE_RUNNER_TEXT_ENTRY_PHASE commandId=target-after-neighbour-focus phase=initial-resolve chars=6 mode=replacement
+XCTest Tap Application '<synthetic-app>'[0.00, 0.00] -> (386.0, 99.0)
+AGENT_DEVICE_RUNNER_TEXT_ENTRY_CLEAR route=element passes=1 outcome=cleared
+AGENT_DEVICE_RUNNER_TEXT_ENTRY_PHASE commandId=target-after-neighbour-focus phase=clear chars=6 mode=replacement
+AGENT_DEVICE_RUNNER_TEXT_ENTRY_PHASE commandId=target-after-neighbour-focus phase=type-first chars=1 mode=replacement
+AGENT_DEVICE_RUNNER_TEXT_ENTRY_PHASE commandId=target-after-neighbour-focus phase=warmup chars=1 mode=replacement
+AGENT_DEVICE_RUNNER_TEXT_ENTRY_PHASE commandId=target-after-neighbour-focus phase=type-remaining chars=5 mode=replacement
+AGENT_DEVICE_RUNNER_TEXT_ENTRY_PHASE commandId=target-after-neighbour-focus phase=verify chars=6 mode=replacement
+AGENT_DEVICE_RUNNER_TEXT_ENTRY_PHASE commandId=target-after-neighbour-focus phase=total chars=6 mode=replacement
+AGENT_DEVICE_RUNNER_COMMAND_COMPLETED command=type commandId=target-after-neighbour-focus ok=1
+
+CASE rejected-select-all-replace
+AGENT_DEVICE_RUNNER_COMMAND_ACCEPTED command=type commandId=rejected-select-all-replace
+AGENT_DEVICE_RUNNER_TEXT_ENTRY_FOCUS evidence=current-input-reports-keyboard-focus polls=0
+AGENT_DEVICE_RUNNER_TEXT_ENTRY_PHASE commandId=rejected-select-all-replace phase=focus chars=9 mode=replacement
+AGENT_DEVICE_RUNNER_TEXT_ENTRY_PHASE commandId=rejected-select-all-replace phase=initial-resolve chars=9 mode=replacement
+AGENT_DEVICE_RUNNER_TEXT_ENTRY_CLEAR route=element passes=4 outcome=notCleared
+XCTest Tap Application '<synthetic-app>'[0.00, 0.00] -> (386.0, 99.0)
+AGENT_DEVICE_RUNNER_TEXT_ENTRY_PHASE commandId=rejected-select-all-replace phase=clear chars=9 mode=replacement
+AGENT_DEVICE_RUNNER_TEXT_ENTRY_PHASE commandId=rejected-select-all-replace phase=type-first chars=1 mode=replacement
+AGENT_DEVICE_RUNNER_TEXT_ENTRY_PHASE commandId=rejected-select-all-replace phase=warmup chars=1 mode=replacement
+AGENT_DEVICE_RUNNER_TEXT_ENTRY_PHASE commandId=rejected-select-all-replace phase=type-remaining chars=8 mode=replacement
+AGENT_DEVICE_RUNNER_TEXT_ENTRY_PHASE commandId=rejected-select-all-replace phase=verify chars=9 mode=replacement
+AGENT_DEVICE_RUNNER_TEXT_ENTRY_PHASE commandId=rejected-select-all-replace phase=total chars=9 mode=replacement
+AGENT_DEVICE_RUNNER_COMMAND_COMPLETED command=type commandId=rejected-select-all-replace ok=1
+
+CASE rejected-select-all-clear
+AGENT_DEVICE_RUNNER_COMMAND_ACCEPTED command=type commandId=rejected-select-all-clear
+AGENT_DEVICE_RUNNER_TEXT_ENTRY_FOCUS evidence=current-input-reports-keyboard-focus polls=0
+AGENT_DEVICE_RUNNER_TEXT_ENTRY_PHASE commandId=rejected-select-all-clear phase=focus chars=0 mode=replacement
+AGENT_DEVICE_RUNNER_TEXT_ENTRY_CLEAR route=element passes=4 outcome=notCleared
+XCTest Tap Application '<synthetic-app>'[0.00, 0.00] -> (386.0, 99.0)
+AGENT_DEVICE_RUNNER_TEXT_ENTRY_PHASE commandId=rejected-select-all-clear phase=total chars=0 mode=replacement
+AGENT_DEVICE_RUNNER_COMMAND_COMPLETED command=type commandId=rejected-select-all-clear ok=1
+
+CASE secure-replace
+AGENT_DEVICE_RUNNER_COMMAND_ACCEPTED command=type commandId=secure-replace
+XCTest Tap Application '<synthetic-app>'[0.00, 0.00] -> (220.0, 99.0)
+AGENT_DEVICE_RUNNER_TEXT_ENTRY_FOCUS evidence=input-reports-keyboard-focus polls=1
+AGENT_DEVICE_RUNNER_TEXT_ENTRY_PHASE commandId=secure-replace phase=focus chars=9 mode=replacement
+AGENT_DEVICE_RUNNER_TEXT_ENTRY_PHASE commandId=secure-replace phase=initial-resolve chars=9 mode=replacement
+XCTest Tap Application '<synthetic-app>'[0.00, 0.00] -> (386.0, 99.0)
+AGENT_DEVICE_RUNNER_TEXT_ENTRY_PHASE commandId=secure-replace phase=clear chars=9 mode=replacement
+AGENT_DEVICE_RUNNER_TEXT_ENTRY_PHASE commandId=secure-replace phase=type-first chars=1 mode=replacement
+AGENT_DEVICE_RUNNER_TEXT_ENTRY_PHASE commandId=secure-replace phase=warmup chars=1 mode=replacement
+AGENT_DEVICE_RUNNER_TEXT_ENTRY_PHASE commandId=secure-replace phase=type-remaining chars=8 mode=replacement
+AGENT_DEVICE_RUNNER_TEXT_ENTRY_PHASE commandId=secure-replace phase=verify chars=9 mode=replacement
+AGENT_DEVICE_RUNNER_TEXT_ENTRY_PHASE commandId=secure-replace phase=total chars=9 mode=replacement
+AGENT_DEVICE_RUNNER_COMMAND_COMPLETED command=type commandId=secure-replace ok=1
+
+CASE secure-clear
+AGENT_DEVICE_RUNNER_COMMAND_ACCEPTED command=type commandId=secure-clear
+XCTest Tap Application '<synthetic-app>'[0.00, 0.00] -> (220.0, 99.0)
+AGENT_DEVICE_RUNNER_TEXT_ENTRY_FOCUS evidence=input-reports-keyboard-focus polls=1
+AGENT_DEVICE_RUNNER_TEXT_ENTRY_PHASE commandId=secure-clear phase=focus chars=0 mode=replacement
+XCTest Tap Application '<synthetic-app>'[0.00, 0.00] -> (386.0, 99.0)
+AGENT_DEVICE_RUNNER_TEXT_ENTRY_PHASE commandId=secure-clear phase=total chars=0 mode=replacement
+AGENT_DEVICE_RUNNER_COMMAND_COMPLETED command=type commandId=secure-clear ok=1
+
+CASE focusedSecure-replace
+AGENT_DEVICE_RUNNER_COMMAND_ACCEPTED command=type commandId=focusedSecure-replace
+AGENT_DEVICE_RUNNER_TEXT_ENTRY_FOCUS evidence=current-input-reports-keyboard-focus polls=0
+AGENT_DEVICE_RUNNER_TEXT_ENTRY_PHASE commandId=focusedSecure-replace phase=focus chars=9 mode=replacement
+AGENT_DEVICE_RUNNER_TEXT_ENTRY_PHASE commandId=focusedSecure-replace phase=initial-resolve chars=9 mode=replacement
+XCTest Tap Application '<synthetic-app>'[0.00, 0.00] -> (386.0, 99.0)
+AGENT_DEVICE_RUNNER_TEXT_ENTRY_PHASE commandId=focusedSecure-replace phase=clear chars=9 mode=replacement
+AGENT_DEVICE_RUNNER_TEXT_ENTRY_PHASE commandId=focusedSecure-replace phase=type-first chars=1 mode=replacement
+AGENT_DEVICE_RUNNER_TEXT_ENTRY_PHASE commandId=focusedSecure-replace phase=warmup chars=1 mode=replacement
+AGENT_DEVICE_RUNNER_TEXT_ENTRY_PHASE commandId=focusedSecure-replace phase=type-remaining chars=8 mode=replacement
+AGENT_DEVICE_RUNNER_TEXT_ENTRY_PHASE commandId=focusedSecure-replace phase=verify chars=9 mode=replacement
+AGENT_DEVICE_RUNNER_TEXT_ENTRY_PHASE commandId=focusedSecure-replace phase=total chars=9 mode=replacement
+AGENT_DEVICE_RUNNER_COMMAND_COMPLETED command=type commandId=focusedSecure-replace ok=1
+
+CASE focusedSecure-clear
+AGENT_DEVICE_RUNNER_COMMAND_ACCEPTED command=type commandId=focusedSecure-clear
+AGENT_DEVICE_RUNNER_TEXT_ENTRY_FOCUS evidence=current-input-reports-keyboard-focus polls=0
+AGENT_DEVICE_RUNNER_TEXT_ENTRY_PHASE commandId=focusedSecure-clear phase=focus chars=0 mode=replacement
+XCTest Tap Application '<synthetic-app>'[0.00, 0.00] -> (386.0, 99.0)
+AGENT_DEVICE_RUNNER_TEXT_ENTRY_PHASE commandId=focusedSecure-clear phase=total chars=0 mode=replacement
+AGENT_DEVICE_RUNNER_COMMAND_COMPLETED command=type commandId=focusedSecure-clear ok=1
+
+CASE masked-replace
+AGENT_DEVICE_RUNNER_COMMAND_ACCEPTED command=type commandId=masked-replace
+XCTest Tap Application '<synthetic-app>'[0.00, 0.00] -> (220.0, 99.0)
+AGENT_DEVICE_RUNNER_TEXT_ENTRY_FOCUS evidence=input-reports-keyboard-focus polls=1
+AGENT_DEVICE_RUNNER_TEXT_ENTRY_PHASE commandId=masked-replace phase=focus chars=9 mode=replacement
+AGENT_DEVICE_RUNNER_TEXT_ENTRY_PHASE commandId=masked-replace phase=initial-resolve chars=9 mode=replacement
+XCTest Tap Application '<synthetic-app>'[0.00, 0.00] -> (386.0, 99.0)
+AGENT_DEVICE_RUNNER_TEXT_ENTRY_PHASE commandId=masked-replace phase=clear chars=9 mode=replacement
+AGENT_DEVICE_RUNNER_TEXT_ENTRY_PHASE commandId=masked-replace phase=type-first chars=1 mode=replacement
+AGENT_DEVICE_RUNNER_TEXT_ENTRY_PHASE commandId=masked-replace phase=warmup chars=1 mode=replacement
+AGENT_DEVICE_RUNNER_TEXT_ENTRY_PHASE commandId=masked-replace phase=type-remaining chars=8 mode=replacement
+AGENT_DEVICE_RUNNER_TEXT_ENTRY_PHASE commandId=masked-replace phase=verify chars=9 mode=replacement
+AGENT_DEVICE_RUNNER_TEXT_ENTRY_PHASE commandId=masked-replace phase=total chars=9 mode=replacement
+AGENT_DEVICE_RUNNER_COMMAND_COMPLETED command=type commandId=masked-replace ok=1
+
+CASE masked-clear
+AGENT_DEVICE_RUNNER_COMMAND_ACCEPTED command=type commandId=masked-clear
+XCTest Tap Application '<synthetic-app>'[0.00, 0.00] -> (220.0, 99.0)
+AGENT_DEVICE_RUNNER_TEXT_ENTRY_FOCUS evidence=input-reports-keyboard-focus polls=1
+AGENT_DEVICE_RUNNER_TEXT_ENTRY_PHASE commandId=masked-clear phase=focus chars=0 mode=replacement
+XCTest Tap Application '<synthetic-app>'[0.00, 0.00] -> (386.0, 99.0)
+AGENT_DEVICE_RUNNER_TEXT_ENTRY_PHASE commandId=masked-clear phase=total chars=0 mode=replacement
+AGENT_DEVICE_RUNNER_COMMAND_COMPLETED command=type commandId=masked-clear ok=1
+
+CASE focusedMasked-replace
+AGENT_DEVICE_RUNNER_COMMAND_ACCEPTED command=type commandId=focusedMasked-replace
+AGENT_DEVICE_RUNNER_TEXT_ENTRY_FOCUS evidence=current-input-reports-keyboard-focus polls=0
+AGENT_DEVICE_RUNNER_TEXT_ENTRY_PHASE commandId=focusedMasked-replace phase=focus chars=9 mode=replacement
+AGENT_DEVICE_RUNNER_TEXT_ENTRY_PHASE commandId=focusedMasked-replace phase=initial-resolve chars=9 mode=replacement
+XCTest Tap Application '<synthetic-app>'[0.00, 0.00] -> (386.0, 99.0)
+AGENT_DEVICE_RUNNER_TEXT_ENTRY_PHASE commandId=focusedMasked-replace phase=clear chars=9 mode=replacement
+AGENT_DEVICE_RUNNER_TEXT_ENTRY_PHASE commandId=focusedMasked-replace phase=type-first chars=1 mode=replacement
+AGENT_DEVICE_RUNNER_TEXT_ENTRY_PHASE commandId=focusedMasked-replace phase=warmup chars=1 mode=replacement
+AGENT_DEVICE_RUNNER_TEXT_ENTRY_PHASE commandId=focusedMasked-replace phase=type-remaining chars=8 mode=replacement
+AGENT_DEVICE_RUNNER_TEXT_ENTRY_PHASE commandId=focusedMasked-replace phase=verify chars=9 mode=replacement
+AGENT_DEVICE_RUNNER_TEXT_ENTRY_PHASE commandId=focusedMasked-replace phase=total chars=9 mode=replacement
+AGENT_DEVICE_RUNNER_COMMAND_COMPLETED command=type commandId=focusedMasked-replace ok=1
+
+CASE focusedMasked-clear
+AGENT_DEVICE_RUNNER_COMMAND_ACCEPTED command=type commandId=focusedMasked-clear
+AGENT_DEVICE_RUNNER_TEXT_ENTRY_FOCUS evidence=current-input-reports-keyboard-focus polls=0
+AGENT_DEVICE_RUNNER_TEXT_ENTRY_PHASE commandId=focusedMasked-clear phase=focus chars=0 mode=replacement
+XCTest Tap Application '<synthetic-app>'[0.00, 0.00] -> (386.0, 99.0)
+AGENT_DEVICE_RUNNER_TEXT_ENTRY_PHASE commandId=focusedMasked-clear phase=total chars=0 mode=replacement
+AGENT_DEVICE_RUNNER_COMMAND_COMPLETED command=type commandId=focusedMasked-clear ok=1

@@ -1,0 +1,172 @@
+{
+  "sourceReceiptSha256": "5c0d5932d87df6c78a81defcd7b29530b9b9b902845638e4ee03c55161a1ea67",
+  "base": "7d42395ff7e1c03b643c2cf56683808bf5427cf3",
+  "head": "abf90adaea15e7104cff4c1bff4979f500e4e810",
+  "command": "pnpm check:affected --run --head abf90adaea15e7104cff4c1bff4979f500e4e810",
+  "status": "passed",
+  "exactCommit": true,
+  "checkoutChanged": false,
+  "checks": [
+    {
+      "id": "format",
+      "status": "passed",
+      "reason": null
+    },
+    {
+      "id": "lint",
+      "status": "passed",
+      "reason": null
+    },
+    {
+      "id": "typecheck",
+      "status": "passed",
+      "reason": null
+    },
+    {
+      "id": "layering",
+      "status": "passed",
+      "reason": null
+    },
+    {
+      "id": "fallow",
+      "status": "passed",
+      "reason": null
+    },
+    {
+      "id": "native-dupes",
+      "status": "passed",
+      "reason": null
+    },
+    {
+      "id": "build",
+      "status": "passed",
+      "reason": null
+    },
+    {
+      "id": "vitest-related",
+      "status": "passed",
+      "reason": null
+    },
+    {
+      "id": "unit",
+      "status": "passed",
+      "reason": null
+    },
+    {
+      "id": "swift-runner-ios",
+      "status": "skipped",
+      "reason": "GitHub-authoritative (jobs: Apple / Smoke Tests, Conformance Differential / iOS Conformance Differential, Perf Nightly / iOS Command Perf, XCTest Nightly / iOS Runner Full XCTest Suite (${{ matrix.leg.name }}))"
+    },
+    {
+      "id": "swift-runner-macos",
+      "status": "skipped",
+      "reason": "GitHub-authoritative (jobs: Apple / Smoke Tests)"
+    },
+    {
+      "id": "web-smoke",
+      "status": "skipped",
+      "reason": "GitHub-authoritative (jobs: Apple / Smoke Tests, Integration Tests, Lint, Typecheck & Package, Perf Nightly / Android Command Perf, Perf Nightly / iOS Command Perf)"
+    },
+    {
+      "id": "command-docs",
+      "status": "passed",
+      "reason": null
+    },
+    {
+      "id": "docs-links",
+      "status": "passed",
+      "reason": null
+    },
+    {
+      "id": "docs-prose",
+      "status": "passed",
+      "reason": null
+    },
+    {
+      "id": "xctest-selection",
+      "status": "passed",
+      "reason": null
+    },
+    {
+      "id": "packaged-runner-swift",
+      "status": "passed",
+      "reason": null
+    },
+    {
+      "id": "replay-ios",
+      "status": "skipped",
+      "reason": "parked, workflow_dispatch only (Replay Manual / iOS Replay Suite)"
+    },
+    {
+      "id": "replay-ios-device",
+      "status": "skipped",
+      "reason": "parked, workflow_dispatch only (Replay Manual / iOS Replay Suite)"
+    },
+    {
+      "id": "replay-macos",
+      "status": "skipped",
+      "reason": "GitHub-authoritative (jobs: Apple / Smoke Tests)"
+    },
+    {
+      "id": "replay-linux",
+      "status": "skipped",
+      "reason": "GitHub-authoritative (jobs: Linux / Smoke Tests)"
+    },
+    {
+      "id": "linux-command-evidence",
+      "status": "skipped",
+      "reason": "GitHub-authoritative (jobs: Linux / Smoke Tests)"
+    },
+    {
+      "id": "replay-android",
+      "status": "skipped",
+      "reason": "parked, workflow_dispatch only (Replay Manual / Android Full Emulator Suite)"
+    }
+  ],
+  "unitTests": {
+    "passed": 17306,
+    "skipped": 1
+  },
+  "nativeTests": {
+    "result": "Passed",
+    "totalTestCount": 9,
+    "passedTests": 9,
+    "failedTests": 0,
+    "skippedTests": 0,
+    "onlyTesting": [
+      "AgentDeviceRunnerUITests/RunnerTests/testFocusedReplacementAndClearDispatchNoFocusOrCaretTap",
+      "AgentDeviceRunnerUITests/RunnerTests/testReplacementReadsFocusAgainAfterAnotherInputTakesIt",
+      "AgentDeviceRunnerUITests/RunnerTests/testFocusedUnidentifiedReplacementKeepsFocusAndCaretPreparation",
+      "AgentDeviceRunnerUITests/RunnerTests/testNewlyFocusedReplacementKeepsCaretPreparation",
+      "AgentDeviceRunnerUITests/RunnerTests/testFocusedAppendKeepsItsFocusTap",
+      "AgentDeviceRunnerUITests/RunnerTests/testFocusedClearMovesCaretForRejectedSelectAllDeletion",
+      "AgentDeviceRunnerUITests/RunnerTests/testFocusedClearDoesNotContinueIntoAReplacementInput",
+      "AgentDeviceRunnerUITests/RunnerTests/testFocusedClearReportsRejectedEditsInsteadOfSuccess",
+      "AgentDeviceRunnerUITests/RunnerTests/testLandscapeReplacementDispatchPreservesFocusedAndPenalizedRoutes"
+    ],
+    "command": [
+      "xcodebuild",
+      "test-without-building",
+      "-xctestrun",
+      "<rebuilt-products.xctestrun>",
+      "-destination",
+      "platform=iOS Simulator,id=<leased-udid>",
+      "-parallel-testing-enabled",
+      "NO",
+      "-only-testing:AgentDeviceRunnerUITests/RunnerTests/testFocusedReplacementAndClearDispatchNoFocusOrCaretTap",
+      "-only-testing:AgentDeviceRunnerUITests/RunnerTests/testReplacementReadsFocusAgainAfterAnotherInputTakesIt",
+      "-only-testing:AgentDeviceRunnerUITests/RunnerTests/testFocusedUnidentifiedReplacementKeepsFocusAndCaretPreparation",
+      "-only-testing:AgentDeviceRunnerUITests/RunnerTests/testNewlyFocusedReplacementKeepsCaretPreparation",
+      "-only-testing:AgentDeviceRunnerUITests/RunnerTests/testFocusedAppendKeepsItsFocusTap",
+      "-only-testing:AgentDeviceRunnerUITests/RunnerTests/testFocusedClearMovesCaretForRejectedSelectAllDeletion",
+      "-only-testing:AgentDeviceRunnerUITests/RunnerTests/testFocusedClearDoesNotContinueIntoAReplacementInput",
+      "-only-testing:AgentDeviceRunnerUITests/RunnerTests/testFocusedClearReportsRejectedEditsInsteadOfSuccess",
+      "-only-testing:AgentDeviceRunnerUITests/RunnerTests/testLandscapeReplacementDispatchPreservesFocusedAndPenalizedRoutes"
+    ]
+  },
+  "nativeBuilds": {
+    "iosArm64": "passed"
+  },
+  "environmentControl": "An earlier unchanged-test timeout reproduced on pristine upstream. The current exact-head gate passed without changes to test source or time budgets. Full diagnostic details remain local.",
+  "nativeSourceSummarySha256": "6205121789339ae618ab16f96701eeaecb9daba97fc760e153a52ae6ec0cb5f9"
+}
