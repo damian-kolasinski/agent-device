@@ -2,6 +2,22 @@
 
 This run names head `abf90adaea15e7104cff4c1bff4979f500e4e810` and pristine upstream base `7d42395ff7e1c03b643c2cf56683808bf5427cf3`. Device type: `com.apple.CoreSimulator.SimDeviceType.iPhone-17-Pro-Max`. Runtime: `com.apple.CoreSimulator.SimRuntime.iOS-26-2`. Both versions rebuilt JavaScript and their own stock iOS XCTest runner with unit fixtures disabled. Each version starts with a previously absent, separate daemon state directory. The source-owned SDK drives native coordinate `fill` through that daemon and runner into a separate UIKit witness app.
 
+## Literal CLI verification
+
+CLI simulator: `com.apple.CoreSimulator.SimDeviceType.iPhone-17-Pro-Max`, runtime `com.apple.CoreSimulator.SimRuntime.iOS-26-2`.
+
+[cli-proof.json](cli-proof.json) records nine direct CLI cases at this exact source head on one simulator. Every preparation, fill, wait and attribute read invokes `node <checkout>/bin/agent-device.mjs`. The common argv prefix uses placeholders for ephemeral paths and identifiers; the per-case `fill x y text` arguments and successful JSON responses are retained. An empty final argument is an explicit clear.
+
+The cases cover focused ordinary empty fill, replacement and clear; initially unfocused replacement and clear; and seeded genuine secure fields, focused/unfocused, for replacement and clear. All cases assert exact app-owned underlying values and an unchanged neighbour. Ordinary focused fills use zero field taps; unfocused fills retain two. Focused secure fills retain one fallback caret tap and reuse focus; unfocused secure fills retain two taps. [cli-runner-excerpts.log](cli-runner-excerpts.log) correlates native accepted/completed type requests, focus evidence, phase boundaries and application coordinate taps. Fresh state, source/binary hashes, production runner launch and completed cleanup are recorded in the JSON.
+
+Place [cli-proof.py](cli-proof.py) beside `Fixture.swift` and run it with a reserved simulator under your exclusive build/verification lock:
+
+```sh
+python3 cli-proof.py --checkout /path/to/head --workspace /path/to/private-cli-results --udid <leased-udid>
+```
+
+The CLI run adds correctness evidence. The paired SDK measurements below remain attributed to the same exact source head; no new performance claim is made from the CLI run.
+
 ## Evidence
 
 - [cases.json](cases.json): all 16 successful cases, preparation commands/responses, coordinate fill commands/responses, exact app-owned underlying values, unchanged neighbour, and focus/tap witnesses.

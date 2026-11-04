@@ -1,0 +1,2811 @@
+{
+  "head": "abf90adaea15e7104cff4c1bff4979f500e4e810",
+  "simulator": {
+    "deviceTypeIdentifier": "com.apple.CoreSimulator.SimDeviceType.iPhone-17-Pro-Max",
+    "runtime": "com.apple.CoreSimulator.SimRuntime.iOS-26-2"
+  },
+  "route": "Standalone source-owned CLI process -> command parser -> fresh daemon -> rebuilt stock XCTest runner testCommand -> UIKit witness app",
+  "argvPrefix": [
+    "node",
+    "<checkout>/bin/agent-device.mjs",
+    "--state-dir",
+    "<state-dir>",
+    "--json",
+    "--session",
+    "<session>",
+    "--platform",
+    "ios",
+    "--udid",
+    "<simulator-udid>"
+  ],
+  "normalization": "Only ephemeral paths and identifiers in the common argv prefix are placeholders. Per-case arguments and whitelisted successful responses are retained. Per-command timing samples and private metadata are omitted.",
+  "runnerSourceFingerprint": "255851f0e796f647e4346225d24c2c9f6085cafac1c5b5bec86fd6d2f6dadff1",
+  "cliSha256": "3238c2b0ac09fb5a96cf30020ea01b902f2242f0316616b81a8855a7420e9a30",
+  "builtJavascriptManifestSha256": "ffe6d50832f61f455ae9a75a98f501777704cc1203c5e1ad6c8a1be4433c522a",
+  "freshStateDirectory": true,
+  "productionRunnerLaunchVerified": true,
+  "productionEntrypoint": "AgentDeviceRunnerUITests/RunnerTests/testCommand",
+  "daemonVersion": "0.21.37-dev",
+  "cases": [
+    {
+      "case": "focused-empty-fill",
+      "requestedText": "benchmark",
+      "beforeField": {
+        "type": "TextField",
+        "identifier": "proof.field",
+        "rect": {
+          "x": 50,
+          "y": 80,
+          "width": 340,
+          "height": 38
+        },
+        "focused": true,
+        "editable": true,
+        "password": false
+      },
+      "beforeWitness": {
+        "type": "StaticText",
+        "identifier": "proof.witness",
+        "label": "taps=0 selections=0 rejected=0 targetFocus=1 neighbourFocus=0",
+        "rect": {
+          "x": 50,
+          "y": 194.33333333333334,
+          "width": 340,
+          "height": 20.333333333333343
+        }
+      },
+      "afterField": {
+        "type": "TextField",
+        "identifier": "proof.field",
+        "value": "benchmark",
+        "rect": {
+          "x": 50,
+          "y": 80,
+          "width": 340,
+          "height": 38
+        },
+        "focused": true,
+        "editable": true,
+        "password": false
+      },
+      "actualValueAssertion": {
+        "type": "StaticText",
+        "identifier": "proof.actual",
+        "label": "Actual:benchmark Neighbour:untouched",
+        "rect": {
+          "x": 50,
+          "y": 168,
+          "width": 340,
+          "height": 20.333333333333343
+        }
+      },
+      "afterWitness": {
+        "type": "StaticText",
+        "identifier": "proof.witness",
+        "label": "taps=0 selections=0 rejected=0 targetFocus=1 neighbourFocus=0",
+        "rect": {
+          "x": 50,
+          "y": 194.33333333333334,
+          "width": 340,
+          "height": 20.333333333333343
+        }
+      },
+      "focusReused": true,
+      "fieldTapCount": 0,
+      "commands": [
+        {
+          "arguments": [
+            "click",
+            "id=\"proof.focusedEmpty\""
+          ],
+          "exitCode": 0,
+          "response": {
+            "success": true,
+            "data": {
+              "x": 220,
+              "y": 260,
+              "message": "Tapped id=\"proof.focusedEmpty\" (220, 260)",
+              "referenceWidth": 440,
+              "referenceHeight": 956,
+              "targetKind": "selector",
+              "selector": "id=\"proof.focusedEmpty\""
+            }
+          }
+        },
+        {
+          "arguments": [
+            "wait",
+            "id=\"proof.state\" label=\"Prepared focusedEmpty\"",
+            "5000"
+          ],
+          "exitCode": 0,
+          "response": {
+            "success": true,
+            "data": {
+              "selector": "id=\"proof.state\" label=\"Prepared focusedEmpty\""
+            }
+          }
+        },
+        {
+          "arguments": [
+            "wait",
+            "id=\"proof.actual\" label=\"Actual: Neighbour:untouched\"",
+            "5000"
+          ],
+          "exitCode": 0,
+          "response": {
+            "success": true,
+            "data": {
+              "selector": "id=\"proof.actual\" label=\"Actual: Neighbour:untouched\""
+            }
+          }
+        },
+        {
+          "arguments": [
+            "wait",
+            "id=\"proof.field\" focused=true",
+            "5000"
+          ],
+          "exitCode": 0,
+          "response": {
+            "success": true,
+            "data": {
+              "selector": "id=\"proof.field\" focused=true"
+            }
+          }
+        },
+        {
+          "arguments": [
+            "get",
+            "attrs",
+            "id=\"proof.field\""
+          ],
+          "exitCode": 0,
+          "response": {
+            "success": true,
+            "data": {
+              "selector": "id=\"proof.field\"",
+              "node": {
+                "type": "TextField",
+                "identifier": "proof.field",
+                "rect": {
+                  "x": 50,
+                  "y": 80,
+                  "width": 340,
+                  "height": 38
+                },
+                "focused": true,
+                "editable": true,
+                "password": false
+              }
+            }
+          }
+        },
+        {
+          "arguments": [
+            "get",
+            "attrs",
+            "id=\"proof.witness\""
+          ],
+          "exitCode": 0,
+          "response": {
+            "success": true,
+            "data": {
+              "selector": "id=\"proof.witness\"",
+              "node": {
+                "type": "StaticText",
+                "identifier": "proof.witness",
+                "label": "taps=0 selections=0 rejected=0 targetFocus=1 neighbourFocus=0",
+                "rect": {
+                  "x": 50,
+                  "y": 194.33333333333334,
+                  "width": 340,
+                  "height": 20.333333333333343
+                }
+              }
+            }
+          }
+        },
+        {
+          "arguments": [
+            "fill",
+            "220.0",
+            "99.0",
+            "benchmark"
+          ],
+          "exitCode": 0,
+          "response": {
+            "success": true,
+            "data": {
+              "x": 220,
+              "y": 99,
+              "text": "benchmark",
+              "message": "Filled 9 chars",
+              "delayMs": 0,
+              "targetKind": "point"
+            }
+          }
+        },
+        {
+          "arguments": [
+            "wait",
+            "id=\"proof.actual\" label=\"Actual:benchmark Neighbour:untouched\"",
+            "5000"
+          ],
+          "exitCode": 0,
+          "response": {
+            "success": true,
+            "data": {
+              "selector": "id=\"proof.actual\" label=\"Actual:benchmark Neighbour:untouched\""
+            }
+          }
+        },
+        {
+          "arguments": [
+            "wait",
+            "id=\"proof.neighbour\" value=\"untouched\"",
+            "5000"
+          ],
+          "exitCode": 0,
+          "response": {
+            "success": true,
+            "data": {
+              "selector": "id=\"proof.neighbour\" value=\"untouched\""
+            }
+          }
+        },
+        {
+          "arguments": [
+            "get",
+            "attrs",
+            "id=\"proof.field\""
+          ],
+          "exitCode": 0,
+          "response": {
+            "success": true,
+            "data": {
+              "selector": "id=\"proof.field\"",
+              "node": {
+                "type": "TextField",
+                "identifier": "proof.field",
+                "value": "benchmark",
+                "rect": {
+                  "x": 50,
+                  "y": 80,
+                  "width": 340,
+                  "height": 38
+                },
+                "focused": true,
+                "editable": true,
+                "password": false
+              }
+            }
+          }
+        },
+        {
+          "arguments": [
+            "get",
+            "attrs",
+            "id=\"proof.actual\""
+          ],
+          "exitCode": 0,
+          "response": {
+            "success": true,
+            "data": {
+              "selector": "id=\"proof.actual\"",
+              "node": {
+                "type": "StaticText",
+                "identifier": "proof.actual",
+                "label": "Actual:benchmark Neighbour:untouched",
+                "rect": {
+                  "x": 50,
+                  "y": 168,
+                  "width": 340,
+                  "height": 20.333333333333343
+                }
+              }
+            }
+          }
+        },
+        {
+          "arguments": [
+            "get",
+            "attrs",
+            "id=\"proof.witness\""
+          ],
+          "exitCode": 0,
+          "response": {
+            "success": true,
+            "data": {
+              "selector": "id=\"proof.witness\"",
+              "node": {
+                "type": "StaticText",
+                "identifier": "proof.witness",
+                "label": "taps=0 selections=0 rejected=0 targetFocus=1 neighbourFocus=0",
+                "rect": {
+                  "x": 50,
+                  "y": 194.33333333333334,
+                  "width": 340,
+                  "height": 20.333333333333343
+                }
+              }
+            }
+          }
+        }
+      ],
+      "sourceRunnerExcerptSha256": "60d8a32b0755129af2529e8bad8cfec8a2fef2020a3782e2fb74d41dc512aae1"
+    },
+    {
+      "case": "focused-prefilled-replace",
+      "requestedText": "benchmark",
+      "beforeField": {
+        "type": "TextField",
+        "identifier": "proof.field",
+        "value": "seedvalue",
+        "rect": {
+          "x": 50,
+          "y": 80,
+          "width": 340,
+          "height": 38
+        },
+        "focused": true,
+        "editable": true,
+        "password": false
+      },
+      "beforeWitness": {
+        "type": "StaticText",
+        "identifier": "proof.witness",
+        "label": "taps=0 selections=0 rejected=0 targetFocus=1 neighbourFocus=0",
+        "rect": {
+          "x": 50,
+          "y": 194.33333333333334,
+          "width": 340,
+          "height": 20.333333333333343
+        }
+      },
+      "afterField": {
+        "type": "TextField",
+        "identifier": "proof.field",
+        "value": "benchmark",
+        "rect": {
+          "x": 50,
+          "y": 80,
+          "width": 340,
+          "height": 38
+        },
+        "focused": true,
+        "editable": true,
+        "password": false
+      },
+      "actualValueAssertion": {
+        "type": "StaticText",
+        "identifier": "proof.actual",
+        "label": "Actual:benchmark Neighbour:untouched",
+        "rect": {
+          "x": 50,
+          "y": 168,
+          "width": 340,
+          "height": 20.333333333333343
+        }
+      },
+      "afterWitness": {
+        "type": "StaticText",
+        "identifier": "proof.witness",
+        "label": "taps=0 selections=1 rejected=0 targetFocus=1 neighbourFocus=0",
+        "rect": {
+          "x": 50,
+          "y": 194.33333333333334,
+          "width": 340,
+          "height": 20.333333333333343
+        }
+      },
+      "focusReused": true,
+      "fieldTapCount": 0,
+      "commands": [
+        {
+          "arguments": [
+            "click",
+            "id=\"proof.focusedSeed\""
+          ],
+          "exitCode": 0,
+          "response": {
+            "success": true,
+            "data": {
+              "x": 107,
+              "y": 292,
+              "message": "Tapped id=\"proof.focusedSeed\" (107, 292)",
+              "referenceWidth": 440,
+              "referenceHeight": 956,
+              "targetKind": "selector",
+              "selector": "id=\"proof.focusedSeed\""
+            }
+          }
+        },
+        {
+          "arguments": [
+            "wait",
+            "id=\"proof.state\" label=\"Prepared focusedSeed\"",
+            "5000"
+          ],
+          "exitCode": 0,
+          "response": {
+            "success": true,
+            "data": {
+              "selector": "id=\"proof.state\" label=\"Prepared focusedSeed\""
+            }
+          }
+        },
+        {
+          "arguments": [
+            "wait",
+            "id=\"proof.actual\" label=\"Actual:seedvalue Neighbour:untouched\"",
+            "5000"
+          ],
+          "exitCode": 0,
+          "response": {
+            "success": true,
+            "data": {
+              "selector": "id=\"proof.actual\" label=\"Actual:seedvalue Neighbour:untouched\""
+            }
+          }
+        },
+        {
+          "arguments": [
+            "wait",
+            "id=\"proof.field\" focused=true",
+            "5000"
+          ],
+          "exitCode": 0,
+          "response": {
+            "success": true,
+            "data": {
+              "selector": "id=\"proof.field\" focused=true"
+            }
+          }
+        },
+        {
+          "arguments": [
+            "get",
+            "attrs",
+            "id=\"proof.field\""
+          ],
+          "exitCode": 0,
+          "response": {
+            "success": true,
+            "data": {
+              "selector": "id=\"proof.field\"",
+              "node": {
+                "type": "TextField",
+                "identifier": "proof.field",
+                "value": "seedvalue",
+                "rect": {
+                  "x": 50,
+                  "y": 80,
+                  "width": 340,
+                  "height": 38
+                },
+                "focused": true,
+                "editable": true,
+                "password": false
+              }
+            }
+          }
+        },
+        {
+          "arguments": [
+            "get",
+            "attrs",
+            "id=\"proof.witness\""
+          ],
+          "exitCode": 0,
+          "response": {
+            "success": true,
+            "data": {
+              "selector": "id=\"proof.witness\"",
+              "node": {
+                "type": "StaticText",
+                "identifier": "proof.witness",
+                "label": "taps=0 selections=0 rejected=0 targetFocus=1 neighbourFocus=0",
+                "rect": {
+                  "x": 50,
+                  "y": 194.33333333333334,
+                  "width": 340,
+                  "height": 20.333333333333343
+                }
+              }
+            }
+          }
+        },
+        {
+          "arguments": [
+            "fill",
+            "220.0",
+            "99.0",
+            "benchmark"
+          ],
+          "exitCode": 0,
+          "response": {
+            "success": true,
+            "data": {
+              "x": 220,
+              "y": 99,
+              "text": "benchmark",
+              "message": "Filled 9 chars",
+              "delayMs": 0,
+              "targetKind": "point"
+            }
+          }
+        },
+        {
+          "arguments": [
+            "wait",
+            "id=\"proof.actual\" label=\"Actual:benchmark Neighbour:untouched\"",
+            "5000"
+          ],
+          "exitCode": 0,
+          "response": {
+            "success": true,
+            "data": {
+              "selector": "id=\"proof.actual\" label=\"Actual:benchmark Neighbour:untouched\""
+            }
+          }
+        },
+        {
+          "arguments": [
+            "wait",
+            "id=\"proof.neighbour\" value=\"untouched\"",
+            "5000"
+          ],
+          "exitCode": 0,
+          "response": {
+            "success": true,
+            "data": {
+              "selector": "id=\"proof.neighbour\" value=\"untouched\""
+            }
+          }
+        },
+        {
+          "arguments": [
+            "get",
+            "attrs",
+            "id=\"proof.field\""
+          ],
+          "exitCode": 0,
+          "response": {
+            "success": true,
+            "data": {
+              "selector": "id=\"proof.field\"",
+              "node": {
+                "type": "TextField",
+                "identifier": "proof.field",
+                "value": "benchmark",
+                "rect": {
+                  "x": 50,
+                  "y": 80,
+                  "width": 340,
+                  "height": 38
+                },
+                "focused": true,
+                "editable": true,
+                "password": false
+              }
+            }
+          }
+        },
+        {
+          "arguments": [
+            "get",
+            "attrs",
+            "id=\"proof.actual\""
+          ],
+          "exitCode": 0,
+          "response": {
+            "success": true,
+            "data": {
+              "selector": "id=\"proof.actual\"",
+              "node": {
+                "type": "StaticText",
+                "identifier": "proof.actual",
+                "label": "Actual:benchmark Neighbour:untouched",
+                "rect": {
+                  "x": 50,
+                  "y": 168,
+                  "width": 340,
+                  "height": 20.333333333333343
+                }
+              }
+            }
+          }
+        },
+        {
+          "arguments": [
+            "get",
+            "attrs",
+            "id=\"proof.witness\""
+          ],
+          "exitCode": 0,
+          "response": {
+            "success": true,
+            "data": {
+              "selector": "id=\"proof.witness\"",
+              "node": {
+                "type": "StaticText",
+                "identifier": "proof.witness",
+                "label": "taps=0 selections=1 rejected=0 targetFocus=1 neighbourFocus=0",
+                "rect": {
+                  "x": 50,
+                  "y": 194.33333333333334,
+                  "width": 340,
+                  "height": 20.333333333333343
+                }
+              }
+            }
+          }
+        }
+      ],
+      "sourceRunnerExcerptSha256": "438646e2e0652f4d02c9bee8e09fdd03d995e98f878c721fab1d230900fbe001"
+    },
+    {
+      "case": "focused-clear",
+      "requestedText": "",
+      "beforeField": {
+        "type": "TextField",
+        "identifier": "proof.field",
+        "value": "seedvalue",
+        "rect": {
+          "x": 50,
+          "y": 80,
+          "width": 340,
+          "height": 38
+        },
+        "focused": true,
+        "editable": true,
+        "password": false
+      },
+      "beforeWitness": {
+        "type": "StaticText",
+        "identifier": "proof.witness",
+        "label": "taps=0 selections=0 rejected=0 targetFocus=1 neighbourFocus=0",
+        "rect": {
+          "x": 50,
+          "y": 194.33333333333334,
+          "width": 340,
+          "height": 20.333333333333343
+        }
+      },
+      "afterField": {
+        "type": "TextField",
+        "identifier": "proof.field",
+        "rect": {
+          "x": 50,
+          "y": 80,
+          "width": 340,
+          "height": 38
+        },
+        "focused": true,
+        "editable": true,
+        "password": false
+      },
+      "actualValueAssertion": {
+        "type": "StaticText",
+        "identifier": "proof.actual",
+        "label": "Actual: Neighbour:untouched",
+        "rect": {
+          "x": 50,
+          "y": 168,
+          "width": 340,
+          "height": 20.333333333333343
+        }
+      },
+      "afterWitness": {
+        "type": "StaticText",
+        "identifier": "proof.witness",
+        "label": "taps=0 selections=1 rejected=0 targetFocus=1 neighbourFocus=0",
+        "rect": {
+          "x": 50,
+          "y": 194.33333333333334,
+          "width": 340,
+          "height": 20.333333333333343
+        }
+      },
+      "focusReused": true,
+      "fieldTapCount": 0,
+      "commands": [
+        {
+          "arguments": [
+            "click",
+            "id=\"proof.focusedSeed\""
+          ],
+          "exitCode": 0,
+          "response": {
+            "success": true,
+            "data": {
+              "x": 107,
+              "y": 292,
+              "message": "Tapped id=\"proof.focusedSeed\" (107, 292)",
+              "referenceWidth": 440,
+              "referenceHeight": 956,
+              "targetKind": "selector",
+              "selector": "id=\"proof.focusedSeed\""
+            }
+          }
+        },
+        {
+          "arguments": [
+            "wait",
+            "id=\"proof.state\" label=\"Prepared focusedSeed\"",
+            "5000"
+          ],
+          "exitCode": 0,
+          "response": {
+            "success": true,
+            "data": {
+              "selector": "id=\"proof.state\" label=\"Prepared focusedSeed\""
+            }
+          }
+        },
+        {
+          "arguments": [
+            "wait",
+            "id=\"proof.actual\" label=\"Actual:seedvalue Neighbour:untouched\"",
+            "5000"
+          ],
+          "exitCode": 0,
+          "response": {
+            "success": true,
+            "data": {
+              "selector": "id=\"proof.actual\" label=\"Actual:seedvalue Neighbour:untouched\""
+            }
+          }
+        },
+        {
+          "arguments": [
+            "wait",
+            "id=\"proof.field\" focused=true",
+            "5000"
+          ],
+          "exitCode": 0,
+          "response": {
+            "success": true,
+            "data": {
+              "selector": "id=\"proof.field\" focused=true"
+            }
+          }
+        },
+        {
+          "arguments": [
+            "get",
+            "attrs",
+            "id=\"proof.field\""
+          ],
+          "exitCode": 0,
+          "response": {
+            "success": true,
+            "data": {
+              "selector": "id=\"proof.field\"",
+              "node": {
+                "type": "TextField",
+                "identifier": "proof.field",
+                "value": "seedvalue",
+                "rect": {
+                  "x": 50,
+                  "y": 80,
+                  "width": 340,
+                  "height": 38
+                },
+                "focused": true,
+                "editable": true,
+                "password": false
+              }
+            }
+          }
+        },
+        {
+          "arguments": [
+            "get",
+            "attrs",
+            "id=\"proof.witness\""
+          ],
+          "exitCode": 0,
+          "response": {
+            "success": true,
+            "data": {
+              "selector": "id=\"proof.witness\"",
+              "node": {
+                "type": "StaticText",
+                "identifier": "proof.witness",
+                "label": "taps=0 selections=0 rejected=0 targetFocus=1 neighbourFocus=0",
+                "rect": {
+                  "x": 50,
+                  "y": 194.33333333333334,
+                  "width": 340,
+                  "height": 20.333333333333343
+                }
+              }
+            }
+          }
+        },
+        {
+          "arguments": [
+            "fill",
+            "220.0",
+            "99.0",
+            ""
+          ],
+          "exitCode": 0,
+          "response": {
+            "success": true,
+            "data": {
+              "x": 220,
+              "y": 99,
+              "text": "",
+              "message": "Filled 0 chars",
+              "delayMs": 0,
+              "targetKind": "point"
+            }
+          }
+        },
+        {
+          "arguments": [
+            "wait",
+            "id=\"proof.actual\" label=\"Actual: Neighbour:untouched\"",
+            "5000"
+          ],
+          "exitCode": 0,
+          "response": {
+            "success": true,
+            "data": {
+              "selector": "id=\"proof.actual\" label=\"Actual: Neighbour:untouched\""
+            }
+          }
+        },
+        {
+          "arguments": [
+            "wait",
+            "id=\"proof.neighbour\" value=\"untouched\"",
+            "5000"
+          ],
+          "exitCode": 0,
+          "response": {
+            "success": true,
+            "data": {
+              "selector": "id=\"proof.neighbour\" value=\"untouched\""
+            }
+          }
+        },
+        {
+          "arguments": [
+            "get",
+            "attrs",
+            "id=\"proof.field\""
+          ],
+          "exitCode": 0,
+          "response": {
+            "success": true,
+            "data": {
+              "selector": "id=\"proof.field\"",
+              "node": {
+                "type": "TextField",
+                "identifier": "proof.field",
+                "rect": {
+                  "x": 50,
+                  "y": 80,
+                  "width": 340,
+                  "height": 38
+                },
+                "focused": true,
+                "editable": true,
+                "password": false
+              }
+            }
+          }
+        },
+        {
+          "arguments": [
+            "get",
+            "attrs",
+            "id=\"proof.actual\""
+          ],
+          "exitCode": 0,
+          "response": {
+            "success": true,
+            "data": {
+              "selector": "id=\"proof.actual\"",
+              "node": {
+                "type": "StaticText",
+                "identifier": "proof.actual",
+                "label": "Actual: Neighbour:untouched",
+                "rect": {
+                  "x": 50,
+                  "y": 168,
+                  "width": 340,
+                  "height": 20.333333333333343
+                }
+              }
+            }
+          }
+        },
+        {
+          "arguments": [
+            "get",
+            "attrs",
+            "id=\"proof.witness\""
+          ],
+          "exitCode": 0,
+          "response": {
+            "success": true,
+            "data": {
+              "selector": "id=\"proof.witness\"",
+              "node": {
+                "type": "StaticText",
+                "identifier": "proof.witness",
+                "label": "taps=0 selections=1 rejected=0 targetFocus=1 neighbourFocus=0",
+                "rect": {
+                  "x": 50,
+                  "y": 194.33333333333334,
+                  "width": 340,
+                  "height": 20.333333333333343
+                }
+              }
+            }
+          }
+        }
+      ],
+      "sourceRunnerExcerptSha256": "f7d7774af76823c0782077b4c736f589b17883ad7f4f9c777baf3b22d37cf6e2"
+    },
+    {
+      "case": "unfocused-prefilled-replace",
+      "requestedText": "benchmark",
+      "beforeField": {
+        "type": "TextField",
+        "identifier": "proof.field",
+        "value": "seedvalue",
+        "rect": {
+          "x": 50,
+          "y": 80,
+          "width": 340,
+          "height": 38
+        },
+        "editable": true,
+        "password": false
+      },
+      "beforeWitness": {
+        "type": "StaticText",
+        "identifier": "proof.witness",
+        "label": "taps=0 selections=0 rejected=0 targetFocus=0 neighbourFocus=0",
+        "rect": {
+          "x": 50,
+          "y": 194.33333333333334,
+          "width": 340,
+          "height": 20.333333333333343
+        }
+      },
+      "afterField": {
+        "type": "TextField",
+        "identifier": "proof.field",
+        "value": "benchmark",
+        "rect": {
+          "x": 50,
+          "y": 80,
+          "width": 340,
+          "height": 38
+        },
+        "focused": true,
+        "editable": true,
+        "password": false
+      },
+      "actualValueAssertion": {
+        "type": "StaticText",
+        "identifier": "proof.actual",
+        "label": "Actual:benchmark Neighbour:untouched",
+        "rect": {
+          "x": 50,
+          "y": 168,
+          "width": 340,
+          "height": 20.333333333333343
+        }
+      },
+      "afterWitness": {
+        "type": "StaticText",
+        "identifier": "proof.witness",
+        "label": "taps=2 selections=1 rejected=0 targetFocus=1 neighbourFocus=0",
+        "rect": {
+          "x": 50,
+          "y": 194.33333333333334,
+          "width": 340,
+          "height": 20.333333333333343
+        }
+      },
+      "focusReused": false,
+      "fieldTapCount": 2,
+      "commands": [
+        {
+          "arguments": [
+            "click",
+            "id=\"proof.seed\""
+          ],
+          "exitCode": 0,
+          "response": {
+            "success": true,
+            "data": {
+              "x": 333,
+              "y": 260,
+              "message": "Tapped id=\"proof.seed\" (333, 260)",
+              "referenceWidth": 440,
+              "referenceHeight": 956,
+              "targetKind": "selector",
+              "selector": "id=\"proof.seed\""
+            }
+          }
+        },
+        {
+          "arguments": [
+            "wait",
+            "id=\"proof.state\" label=\"Prepared seed\"",
+            "5000"
+          ],
+          "exitCode": 0,
+          "response": {
+            "success": true,
+            "data": {
+              "selector": "id=\"proof.state\" label=\"Prepared seed\""
+            }
+          }
+        },
+        {
+          "arguments": [
+            "wait",
+            "id=\"proof.actual\" label=\"Actual:seedvalue Neighbour:untouched\"",
+            "5000"
+          ],
+          "exitCode": 0,
+          "response": {
+            "success": true,
+            "data": {
+              "selector": "id=\"proof.actual\" label=\"Actual:seedvalue Neighbour:untouched\""
+            }
+          }
+        },
+        {
+          "arguments": [
+            "wait",
+            "id=\"proof.field\" focused=false",
+            "5000"
+          ],
+          "exitCode": 0,
+          "response": {
+            "success": true,
+            "data": {
+              "selector": "id=\"proof.field\" focused=false"
+            }
+          }
+        },
+        {
+          "arguments": [
+            "get",
+            "attrs",
+            "id=\"proof.field\""
+          ],
+          "exitCode": 0,
+          "response": {
+            "success": true,
+            "data": {
+              "selector": "id=\"proof.field\"",
+              "node": {
+                "type": "TextField",
+                "identifier": "proof.field",
+                "value": "seedvalue",
+                "rect": {
+                  "x": 50,
+                  "y": 80,
+                  "width": 340,
+                  "height": 38
+                },
+                "editable": true,
+                "password": false
+              }
+            }
+          }
+        },
+        {
+          "arguments": [
+            "get",
+            "attrs",
+            "id=\"proof.witness\""
+          ],
+          "exitCode": 0,
+          "response": {
+            "success": true,
+            "data": {
+              "selector": "id=\"proof.witness\"",
+              "node": {
+                "type": "StaticText",
+                "identifier": "proof.witness",
+                "label": "taps=0 selections=0 rejected=0 targetFocus=0 neighbourFocus=0",
+                "rect": {
+                  "x": 50,
+                  "y": 194.33333333333334,
+                  "width": 340,
+                  "height": 20.333333333333343
+                }
+              }
+            }
+          }
+        },
+        {
+          "arguments": [
+            "fill",
+            "220.0",
+            "99.0",
+            "benchmark"
+          ],
+          "exitCode": 0,
+          "response": {
+            "success": true,
+            "data": {
+              "x": 220,
+              "y": 99,
+              "text": "benchmark",
+              "message": "Filled 9 chars",
+              "delayMs": 0,
+              "targetKind": "point"
+            }
+          }
+        },
+        {
+          "arguments": [
+            "wait",
+            "id=\"proof.actual\" label=\"Actual:benchmark Neighbour:untouched\"",
+            "5000"
+          ],
+          "exitCode": 0,
+          "response": {
+            "success": true,
+            "data": {
+              "selector": "id=\"proof.actual\" label=\"Actual:benchmark Neighbour:untouched\""
+            }
+          }
+        },
+        {
+          "arguments": [
+            "wait",
+            "id=\"proof.neighbour\" value=\"untouched\"",
+            "5000"
+          ],
+          "exitCode": 0,
+          "response": {
+            "success": true,
+            "data": {
+              "selector": "id=\"proof.neighbour\" value=\"untouched\""
+            }
+          }
+        },
+        {
+          "arguments": [
+            "get",
+            "attrs",
+            "id=\"proof.field\""
+          ],
+          "exitCode": 0,
+          "response": {
+            "success": true,
+            "data": {
+              "selector": "id=\"proof.field\"",
+              "node": {
+                "type": "TextField",
+                "identifier": "proof.field",
+                "value": "benchmark",
+                "rect": {
+                  "x": 50,
+                  "y": 80,
+                  "width": 340,
+                  "height": 38
+                },
+                "focused": true,
+                "editable": true,
+                "password": false
+              }
+            }
+          }
+        },
+        {
+          "arguments": [
+            "get",
+            "attrs",
+            "id=\"proof.actual\""
+          ],
+          "exitCode": 0,
+          "response": {
+            "success": true,
+            "data": {
+              "selector": "id=\"proof.actual\"",
+              "node": {
+                "type": "StaticText",
+                "identifier": "proof.actual",
+                "label": "Actual:benchmark Neighbour:untouched",
+                "rect": {
+                  "x": 50,
+                  "y": 168,
+                  "width": 340,
+                  "height": 20.333333333333343
+                }
+              }
+            }
+          }
+        },
+        {
+          "arguments": [
+            "get",
+            "attrs",
+            "id=\"proof.witness\""
+          ],
+          "exitCode": 0,
+          "response": {
+            "success": true,
+            "data": {
+              "selector": "id=\"proof.witness\"",
+              "node": {
+                "type": "StaticText",
+                "identifier": "proof.witness",
+                "label": "taps=2 selections=1 rejected=0 targetFocus=1 neighbourFocus=0",
+                "rect": {
+                  "x": 50,
+                  "y": 194.33333333333334,
+                  "width": 340,
+                  "height": 20.333333333333343
+                }
+              }
+            }
+          }
+        }
+      ],
+      "sourceRunnerExcerptSha256": "01953b6a5b6ab88832821f12f1ed78d16d23bb8f56e909b2a08838aef38391d0"
+    },
+    {
+      "case": "unfocused-clear",
+      "requestedText": "",
+      "beforeField": {
+        "type": "TextField",
+        "identifier": "proof.field",
+        "value": "seedvalue",
+        "rect": {
+          "x": 50,
+          "y": 80,
+          "width": 340,
+          "height": 38
+        },
+        "editable": true,
+        "password": false
+      },
+      "beforeWitness": {
+        "type": "StaticText",
+        "identifier": "proof.witness",
+        "label": "taps=0 selections=0 rejected=0 targetFocus=0 neighbourFocus=0",
+        "rect": {
+          "x": 50,
+          "y": 194.33333333333334,
+          "width": 340,
+          "height": 20.333333333333343
+        }
+      },
+      "afterField": {
+        "type": "TextField",
+        "identifier": "proof.field",
+        "rect": {
+          "x": 50,
+          "y": 80,
+          "width": 340,
+          "height": 38
+        },
+        "focused": true,
+        "editable": true,
+        "password": false
+      },
+      "actualValueAssertion": {
+        "type": "StaticText",
+        "identifier": "proof.actual",
+        "label": "Actual: Neighbour:untouched",
+        "rect": {
+          "x": 50,
+          "y": 168,
+          "width": 340,
+          "height": 20.333333333333343
+        }
+      },
+      "afterWitness": {
+        "type": "StaticText",
+        "identifier": "proof.witness",
+        "label": "taps=2 selections=1 rejected=0 targetFocus=1 neighbourFocus=0",
+        "rect": {
+          "x": 50,
+          "y": 194.33333333333334,
+          "width": 340,
+          "height": 20.333333333333343
+        }
+      },
+      "focusReused": false,
+      "fieldTapCount": 2,
+      "commands": [
+        {
+          "arguments": [
+            "click",
+            "id=\"proof.seed\""
+          ],
+          "exitCode": 0,
+          "response": {
+            "success": true,
+            "data": {
+              "x": 333,
+              "y": 260,
+              "message": "Tapped id=\"proof.seed\" (333, 260)",
+              "referenceWidth": 440,
+              "referenceHeight": 956,
+              "targetKind": "selector",
+              "selector": "id=\"proof.seed\""
+            }
+          }
+        },
+        {
+          "arguments": [
+            "wait",
+            "id=\"proof.state\" label=\"Prepared seed\"",
+            "5000"
+          ],
+          "exitCode": 0,
+          "response": {
+            "success": true,
+            "data": {
+              "selector": "id=\"proof.state\" label=\"Prepared seed\""
+            }
+          }
+        },
+        {
+          "arguments": [
+            "wait",
+            "id=\"proof.actual\" label=\"Actual:seedvalue Neighbour:untouched\"",
+            "5000"
+          ],
+          "exitCode": 0,
+          "response": {
+            "success": true,
+            "data": {
+              "selector": "id=\"proof.actual\" label=\"Actual:seedvalue Neighbour:untouched\""
+            }
+          }
+        },
+        {
+          "arguments": [
+            "wait",
+            "id=\"proof.field\" focused=false",
+            "5000"
+          ],
+          "exitCode": 0,
+          "response": {
+            "success": true,
+            "data": {
+              "selector": "id=\"proof.field\" focused=false"
+            }
+          }
+        },
+        {
+          "arguments": [
+            "get",
+            "attrs",
+            "id=\"proof.field\""
+          ],
+          "exitCode": 0,
+          "response": {
+            "success": true,
+            "data": {
+              "selector": "id=\"proof.field\"",
+              "node": {
+                "type": "TextField",
+                "identifier": "proof.field",
+                "value": "seedvalue",
+                "rect": {
+                  "x": 50,
+                  "y": 80,
+                  "width": 340,
+                  "height": 38
+                },
+                "editable": true,
+                "password": false
+              }
+            }
+          }
+        },
+        {
+          "arguments": [
+            "get",
+            "attrs",
+            "id=\"proof.witness\""
+          ],
+          "exitCode": 0,
+          "response": {
+            "success": true,
+            "data": {
+              "selector": "id=\"proof.witness\"",
+              "node": {
+                "type": "StaticText",
+                "identifier": "proof.witness",
+                "label": "taps=0 selections=0 rejected=0 targetFocus=0 neighbourFocus=0",
+                "rect": {
+                  "x": 50,
+                  "y": 194.33333333333334,
+                  "width": 340,
+                  "height": 20.333333333333343
+                }
+              }
+            }
+          }
+        },
+        {
+          "arguments": [
+            "fill",
+            "220.0",
+            "99.0",
+            ""
+          ],
+          "exitCode": 0,
+          "response": {
+            "success": true,
+            "data": {
+              "x": 220,
+              "y": 99,
+              "text": "",
+              "message": "Filled 0 chars",
+              "delayMs": 0,
+              "targetKind": "point"
+            }
+          }
+        },
+        {
+          "arguments": [
+            "wait",
+            "id=\"proof.actual\" label=\"Actual: Neighbour:untouched\"",
+            "5000"
+          ],
+          "exitCode": 0,
+          "response": {
+            "success": true,
+            "data": {
+              "selector": "id=\"proof.actual\" label=\"Actual: Neighbour:untouched\""
+            }
+          }
+        },
+        {
+          "arguments": [
+            "wait",
+            "id=\"proof.neighbour\" value=\"untouched\"",
+            "5000"
+          ],
+          "exitCode": 0,
+          "response": {
+            "success": true,
+            "data": {
+              "selector": "id=\"proof.neighbour\" value=\"untouched\""
+            }
+          }
+        },
+        {
+          "arguments": [
+            "get",
+            "attrs",
+            "id=\"proof.field\""
+          ],
+          "exitCode": 0,
+          "response": {
+            "success": true,
+            "data": {
+              "selector": "id=\"proof.field\"",
+              "node": {
+                "type": "TextField",
+                "identifier": "proof.field",
+                "rect": {
+                  "x": 50,
+                  "y": 80,
+                  "width": 340,
+                  "height": 38
+                },
+                "focused": true,
+                "editable": true,
+                "password": false
+              }
+            }
+          }
+        },
+        {
+          "arguments": [
+            "get",
+            "attrs",
+            "id=\"proof.actual\""
+          ],
+          "exitCode": 0,
+          "response": {
+            "success": true,
+            "data": {
+              "selector": "id=\"proof.actual\"",
+              "node": {
+                "type": "StaticText",
+                "identifier": "proof.actual",
+                "label": "Actual: Neighbour:untouched",
+                "rect": {
+                  "x": 50,
+                  "y": 168,
+                  "width": 340,
+                  "height": 20.333333333333343
+                }
+              }
+            }
+          }
+        },
+        {
+          "arguments": [
+            "get",
+            "attrs",
+            "id=\"proof.witness\""
+          ],
+          "exitCode": 0,
+          "response": {
+            "success": true,
+            "data": {
+              "selector": "id=\"proof.witness\"",
+              "node": {
+                "type": "StaticText",
+                "identifier": "proof.witness",
+                "label": "taps=2 selections=1 rejected=0 targetFocus=1 neighbourFocus=0",
+                "rect": {
+                  "x": 50,
+                  "y": 194.33333333333334,
+                  "width": 340,
+                  "height": 20.333333333333343
+                }
+              }
+            }
+          }
+        }
+      ],
+      "sourceRunnerExcerptSha256": "69d18de35c95738f1967de6f2e07cca8b6c47fc6305ee0b3c5c1b303a08e4845"
+    },
+    {
+      "case": "secure-unfocused-replace",
+      "requestedText": "benchmark",
+      "beforeField": {
+        "type": "SecureTextField",
+        "identifier": "proof.field",
+        "value": "\u2022\u2022\u2022\u2022\u2022\u2022\u2022\u2022\u2022",
+        "rect": {
+          "x": 50,
+          "y": 80,
+          "width": 340,
+          "height": 38
+        },
+        "editable": true,
+        "password": true
+      },
+      "beforeWitness": {
+        "type": "StaticText",
+        "identifier": "proof.witness",
+        "label": "taps=0 selections=0 rejected=0 targetFocus=0 neighbourFocus=0",
+        "rect": {
+          "x": 50,
+          "y": 194.33333333333334,
+          "width": 340,
+          "height": 20.333333333333343
+        }
+      },
+      "afterField": {
+        "type": "SecureTextField",
+        "identifier": "proof.field",
+        "value": "\u2022\u2022\u2022\u2022\u2022\u2022\u2022\u2022\u2022",
+        "rect": {
+          "x": 50,
+          "y": 80,
+          "width": 340,
+          "height": 38
+        },
+        "focused": true,
+        "editable": true,
+        "password": true
+      },
+      "actualValueAssertion": {
+        "type": "StaticText",
+        "identifier": "proof.actual",
+        "label": "Actual:benchmark Neighbour:untouched",
+        "rect": {
+          "x": 50,
+          "y": 168,
+          "width": 340,
+          "height": 20.333333333333343
+        }
+      },
+      "afterWitness": {
+        "type": "StaticText",
+        "identifier": "proof.witness",
+        "label": "taps=2 selections=0 rejected=0 targetFocus=1 neighbourFocus=0",
+        "rect": {
+          "x": 50,
+          "y": 194.33333333333334,
+          "width": 340,
+          "height": 20.333333333333343
+        }
+      },
+      "focusReused": false,
+      "fieldTapCount": 2,
+      "commands": [
+        {
+          "arguments": [
+            "click",
+            "id=\"proof.secure\""
+          ],
+          "exitCode": 0,
+          "response": {
+            "success": true,
+            "data": {
+              "x": 220,
+              "y": 292,
+              "message": "Tapped id=\"proof.secure\" (220, 292)",
+              "referenceWidth": 440,
+              "referenceHeight": 956,
+              "targetKind": "selector",
+              "selector": "id=\"proof.secure\""
+            }
+          }
+        },
+        {
+          "arguments": [
+            "wait",
+            "id=\"proof.state\" label=\"Prepared secure\"",
+            "5000"
+          ],
+          "exitCode": 0,
+          "response": {
+            "success": true,
+            "data": {
+              "selector": "id=\"proof.state\" label=\"Prepared secure\""
+            }
+          }
+        },
+        {
+          "arguments": [
+            "wait",
+            "id=\"proof.actual\" label=\"Actual:seedvalue Neighbour:untouched\"",
+            "5000"
+          ],
+          "exitCode": 0,
+          "response": {
+            "success": true,
+            "data": {
+              "selector": "id=\"proof.actual\" label=\"Actual:seedvalue Neighbour:untouched\""
+            }
+          }
+        },
+        {
+          "arguments": [
+            "wait",
+            "id=\"proof.field\" focused=false",
+            "5000"
+          ],
+          "exitCode": 0,
+          "response": {
+            "success": true,
+            "data": {
+              "selector": "id=\"proof.field\" focused=false"
+            }
+          }
+        },
+        {
+          "arguments": [
+            "get",
+            "attrs",
+            "id=\"proof.field\""
+          ],
+          "exitCode": 0,
+          "response": {
+            "success": true,
+            "data": {
+              "selector": "id=\"proof.field\"",
+              "node": {
+                "type": "SecureTextField",
+                "identifier": "proof.field",
+                "value": "\u2022\u2022\u2022\u2022\u2022\u2022\u2022\u2022\u2022",
+                "rect": {
+                  "x": 50,
+                  "y": 80,
+                  "width": 340,
+                  "height": 38
+                },
+                "editable": true,
+                "password": true
+              }
+            }
+          }
+        },
+        {
+          "arguments": [
+            "get",
+            "attrs",
+            "id=\"proof.witness\""
+          ],
+          "exitCode": 0,
+          "response": {
+            "success": true,
+            "data": {
+              "selector": "id=\"proof.witness\"",
+              "node": {
+                "type": "StaticText",
+                "identifier": "proof.witness",
+                "label": "taps=0 selections=0 rejected=0 targetFocus=0 neighbourFocus=0",
+                "rect": {
+                  "x": 50,
+                  "y": 194.33333333333334,
+                  "width": 340,
+                  "height": 20.333333333333343
+                }
+              }
+            }
+          }
+        },
+        {
+          "arguments": [
+            "fill",
+            "220.0",
+            "99.0",
+            "benchmark"
+          ],
+          "exitCode": 0,
+          "response": {
+            "success": true,
+            "data": {
+              "x": 220,
+              "y": 99,
+              "text": "benchmark",
+              "message": "Filled 9 chars",
+              "delayMs": 0,
+              "targetKind": "point"
+            }
+          }
+        },
+        {
+          "arguments": [
+            "wait",
+            "id=\"proof.actual\" label=\"Actual:benchmark Neighbour:untouched\"",
+            "5000"
+          ],
+          "exitCode": 0,
+          "response": {
+            "success": true,
+            "data": {
+              "selector": "id=\"proof.actual\" label=\"Actual:benchmark Neighbour:untouched\""
+            }
+          }
+        },
+        {
+          "arguments": [
+            "wait",
+            "id=\"proof.neighbour\" value=\"untouched\"",
+            "5000"
+          ],
+          "exitCode": 0,
+          "response": {
+            "success": true,
+            "data": {
+              "selector": "id=\"proof.neighbour\" value=\"untouched\""
+            }
+          }
+        },
+        {
+          "arguments": [
+            "get",
+            "attrs",
+            "id=\"proof.field\""
+          ],
+          "exitCode": 0,
+          "response": {
+            "success": true,
+            "data": {
+              "selector": "id=\"proof.field\"",
+              "node": {
+                "type": "SecureTextField",
+                "identifier": "proof.field",
+                "value": "\u2022\u2022\u2022\u2022\u2022\u2022\u2022\u2022\u2022",
+                "rect": {
+                  "x": 50,
+                  "y": 80,
+                  "width": 340,
+                  "height": 38
+                },
+                "focused": true,
+                "editable": true,
+                "password": true
+              }
+            }
+          }
+        },
+        {
+          "arguments": [
+            "get",
+            "attrs",
+            "id=\"proof.actual\""
+          ],
+          "exitCode": 0,
+          "response": {
+            "success": true,
+            "data": {
+              "selector": "id=\"proof.actual\"",
+              "node": {
+                "type": "StaticText",
+                "identifier": "proof.actual",
+                "label": "Actual:benchmark Neighbour:untouched",
+                "rect": {
+                  "x": 50,
+                  "y": 168,
+                  "width": 340,
+                  "height": 20.333333333333343
+                }
+              }
+            }
+          }
+        },
+        {
+          "arguments": [
+            "get",
+            "attrs",
+            "id=\"proof.witness\""
+          ],
+          "exitCode": 0,
+          "response": {
+            "success": true,
+            "data": {
+              "selector": "id=\"proof.witness\"",
+              "node": {
+                "type": "StaticText",
+                "identifier": "proof.witness",
+                "label": "taps=2 selections=0 rejected=0 targetFocus=1 neighbourFocus=0",
+                "rect": {
+                  "x": 50,
+                  "y": 194.33333333333334,
+                  "width": 340,
+                  "height": 20.333333333333343
+                }
+              }
+            }
+          }
+        }
+      ],
+      "sourceRunnerExcerptSha256": "7dfdeab9d84673d547c15ee05694e5b16000e810b83ca91b352105da44bca862"
+    },
+    {
+      "case": "secure-unfocused-clear",
+      "requestedText": "",
+      "beforeField": {
+        "type": "SecureTextField",
+        "identifier": "proof.field",
+        "value": "\u2022\u2022\u2022\u2022\u2022\u2022\u2022\u2022\u2022",
+        "rect": {
+          "x": 50,
+          "y": 80,
+          "width": 340,
+          "height": 38
+        },
+        "editable": true,
+        "password": true
+      },
+      "beforeWitness": {
+        "type": "StaticText",
+        "identifier": "proof.witness",
+        "label": "taps=0 selections=0 rejected=0 targetFocus=0 neighbourFocus=0",
+        "rect": {
+          "x": 50,
+          "y": 194.33333333333334,
+          "width": 340,
+          "height": 20.333333333333343
+        }
+      },
+      "afterField": {
+        "type": "SecureTextField",
+        "identifier": "proof.field",
+        "rect": {
+          "x": 50,
+          "y": 80,
+          "width": 340,
+          "height": 38
+        },
+        "focused": true,
+        "editable": true,
+        "password": true
+      },
+      "actualValueAssertion": {
+        "type": "StaticText",
+        "identifier": "proof.actual",
+        "label": "Actual: Neighbour:untouched",
+        "rect": {
+          "x": 50,
+          "y": 168,
+          "width": 340,
+          "height": 20.333333333333343
+        }
+      },
+      "afterWitness": {
+        "type": "StaticText",
+        "identifier": "proof.witness",
+        "label": "taps=2 selections=0 rejected=0 targetFocus=1 neighbourFocus=0",
+        "rect": {
+          "x": 50,
+          "y": 194.33333333333334,
+          "width": 340,
+          "height": 20.333333333333343
+        }
+      },
+      "focusReused": false,
+      "fieldTapCount": 2,
+      "commands": [
+        {
+          "arguments": [
+            "click",
+            "id=\"proof.secure\""
+          ],
+          "exitCode": 0,
+          "response": {
+            "success": true,
+            "data": {
+              "x": 220,
+              "y": 292,
+              "message": "Tapped id=\"proof.secure\" (220, 292)",
+              "referenceWidth": 440,
+              "referenceHeight": 956,
+              "targetKind": "selector",
+              "selector": "id=\"proof.secure\""
+            }
+          }
+        },
+        {
+          "arguments": [
+            "wait",
+            "id=\"proof.state\" label=\"Prepared secure\"",
+            "5000"
+          ],
+          "exitCode": 0,
+          "response": {
+            "success": true,
+            "data": {
+              "selector": "id=\"proof.state\" label=\"Prepared secure\""
+            }
+          }
+        },
+        {
+          "arguments": [
+            "wait",
+            "id=\"proof.actual\" label=\"Actual:seedvalue Neighbour:untouched\"",
+            "5000"
+          ],
+          "exitCode": 0,
+          "response": {
+            "success": true,
+            "data": {
+              "selector": "id=\"proof.actual\" label=\"Actual:seedvalue Neighbour:untouched\""
+            }
+          }
+        },
+        {
+          "arguments": [
+            "wait",
+            "id=\"proof.field\" focused=false",
+            "5000"
+          ],
+          "exitCode": 0,
+          "response": {
+            "success": true,
+            "data": {
+              "selector": "id=\"proof.field\" focused=false"
+            }
+          }
+        },
+        {
+          "arguments": [
+            "get",
+            "attrs",
+            "id=\"proof.field\""
+          ],
+          "exitCode": 0,
+          "response": {
+            "success": true,
+            "data": {
+              "selector": "id=\"proof.field\"",
+              "node": {
+                "type": "SecureTextField",
+                "identifier": "proof.field",
+                "value": "\u2022\u2022\u2022\u2022\u2022\u2022\u2022\u2022\u2022",
+                "rect": {
+                  "x": 50,
+                  "y": 80,
+                  "width": 340,
+                  "height": 38
+                },
+                "editable": true,
+                "password": true
+              }
+            }
+          }
+        },
+        {
+          "arguments": [
+            "get",
+            "attrs",
+            "id=\"proof.witness\""
+          ],
+          "exitCode": 0,
+          "response": {
+            "success": true,
+            "data": {
+              "selector": "id=\"proof.witness\"",
+              "node": {
+                "type": "StaticText",
+                "identifier": "proof.witness",
+                "label": "taps=0 selections=0 rejected=0 targetFocus=0 neighbourFocus=0",
+                "rect": {
+                  "x": 50,
+                  "y": 194.33333333333334,
+                  "width": 340,
+                  "height": 20.333333333333343
+                }
+              }
+            }
+          }
+        },
+        {
+          "arguments": [
+            "fill",
+            "220.0",
+            "99.0",
+            ""
+          ],
+          "exitCode": 0,
+          "response": {
+            "success": true,
+            "data": {
+              "x": 220,
+              "y": 99,
+              "text": "",
+              "message": "Filled 0 chars",
+              "delayMs": 0,
+              "targetKind": "point"
+            }
+          }
+        },
+        {
+          "arguments": [
+            "wait",
+            "id=\"proof.actual\" label=\"Actual: Neighbour:untouched\"",
+            "5000"
+          ],
+          "exitCode": 0,
+          "response": {
+            "success": true,
+            "data": {
+              "selector": "id=\"proof.actual\" label=\"Actual: Neighbour:untouched\""
+            }
+          }
+        },
+        {
+          "arguments": [
+            "wait",
+            "id=\"proof.neighbour\" value=\"untouched\"",
+            "5000"
+          ],
+          "exitCode": 0,
+          "response": {
+            "success": true,
+            "data": {
+              "selector": "id=\"proof.neighbour\" value=\"untouched\""
+            }
+          }
+        },
+        {
+          "arguments": [
+            "get",
+            "attrs",
+            "id=\"proof.field\""
+          ],
+          "exitCode": 0,
+          "response": {
+            "success": true,
+            "data": {
+              "selector": "id=\"proof.field\"",
+              "node": {
+                "type": "SecureTextField",
+                "identifier": "proof.field",
+                "rect": {
+                  "x": 50,
+                  "y": 80,
+                  "width": 340,
+                  "height": 38
+                },
+                "focused": true,
+                "editable": true,
+                "password": true
+              }
+            }
+          }
+        },
+        {
+          "arguments": [
+            "get",
+            "attrs",
+            "id=\"proof.actual\""
+          ],
+          "exitCode": 0,
+          "response": {
+            "success": true,
+            "data": {
+              "selector": "id=\"proof.actual\"",
+              "node": {
+                "type": "StaticText",
+                "identifier": "proof.actual",
+                "label": "Actual: Neighbour:untouched",
+                "rect": {
+                  "x": 50,
+                  "y": 168,
+                  "width": 340,
+                  "height": 20.333333333333343
+                }
+              }
+            }
+          }
+        },
+        {
+          "arguments": [
+            "get",
+            "attrs",
+            "id=\"proof.witness\""
+          ],
+          "exitCode": 0,
+          "response": {
+            "success": true,
+            "data": {
+              "selector": "id=\"proof.witness\"",
+              "node": {
+                "type": "StaticText",
+                "identifier": "proof.witness",
+                "label": "taps=2 selections=0 rejected=0 targetFocus=1 neighbourFocus=0",
+                "rect": {
+                  "x": 50,
+                  "y": 194.33333333333334,
+                  "width": 340,
+                  "height": 20.333333333333343
+                }
+              }
+            }
+          }
+        }
+      ],
+      "sourceRunnerExcerptSha256": "822264635d752dc96bfd4a985560fcbf2400591d2fcfe9ebb73cfe7d705c8ff9"
+    },
+    {
+      "case": "secure-focused-replace",
+      "requestedText": "benchmark",
+      "beforeField": {
+        "type": "SecureTextField",
+        "identifier": "proof.field",
+        "value": "\u2022\u2022\u2022\u2022\u2022\u2022\u2022\u2022\u2022",
+        "rect": {
+          "x": 50,
+          "y": 80,
+          "width": 340,
+          "height": 38
+        },
+        "focused": true,
+        "editable": true,
+        "password": true
+      },
+      "beforeWitness": {
+        "type": "StaticText",
+        "identifier": "proof.witness",
+        "label": "taps=0 selections=0 rejected=0 targetFocus=1 neighbourFocus=0",
+        "rect": {
+          "x": 50,
+          "y": 194.33333333333334,
+          "width": 340,
+          "height": 20.333333333333343
+        }
+      },
+      "afterField": {
+        "type": "SecureTextField",
+        "identifier": "proof.field",
+        "value": "\u2022\u2022\u2022\u2022\u2022\u2022\u2022\u2022\u2022",
+        "rect": {
+          "x": 50,
+          "y": 80,
+          "width": 340,
+          "height": 38
+        },
+        "focused": true,
+        "editable": true,
+        "password": true
+      },
+      "actualValueAssertion": {
+        "type": "StaticText",
+        "identifier": "proof.actual",
+        "label": "Actual:benchmark Neighbour:untouched",
+        "rect": {
+          "x": 50,
+          "y": 168,
+          "width": 340,
+          "height": 20.333333333333343
+        }
+      },
+      "afterWitness": {
+        "type": "StaticText",
+        "identifier": "proof.witness",
+        "label": "taps=1 selections=0 rejected=0 targetFocus=1 neighbourFocus=0",
+        "rect": {
+          "x": 50,
+          "y": 194.33333333333334,
+          "width": 340,
+          "height": 20.333333333333343
+        }
+      },
+      "focusReused": true,
+      "fieldTapCount": 1,
+      "commands": [
+        {
+          "arguments": [
+            "click",
+            "id=\"proof.focusedSecure\""
+          ],
+          "exitCode": 0,
+          "response": {
+            "success": true,
+            "data": {
+              "x": 333,
+              "y": 292,
+              "message": "Tapped id=\"proof.focusedSecure\" (333, 292)",
+              "referenceWidth": 440,
+              "referenceHeight": 956,
+              "targetKind": "selector",
+              "selector": "id=\"proof.focusedSecure\""
+            }
+          }
+        },
+        {
+          "arguments": [
+            "wait",
+            "id=\"proof.state\" label=\"Prepared focusedSecure\"",
+            "5000"
+          ],
+          "exitCode": 0,
+          "response": {
+            "success": true,
+            "data": {
+              "selector": "id=\"proof.state\" label=\"Prepared focusedSecure\""
+            }
+          }
+        },
+        {
+          "arguments": [
+            "wait",
+            "id=\"proof.actual\" label=\"Actual:seedvalue Neighbour:untouched\"",
+            "5000"
+          ],
+          "exitCode": 0,
+          "response": {
+            "success": true,
+            "data": {
+              "selector": "id=\"proof.actual\" label=\"Actual:seedvalue Neighbour:untouched\""
+            }
+          }
+        },
+        {
+          "arguments": [
+            "wait",
+            "id=\"proof.field\" focused=true",
+            "5000"
+          ],
+          "exitCode": 0,
+          "response": {
+            "success": true,
+            "data": {
+              "selector": "id=\"proof.field\" focused=true"
+            }
+          }
+        },
+        {
+          "arguments": [
+            "get",
+            "attrs",
+            "id=\"proof.field\""
+          ],
+          "exitCode": 0,
+          "response": {
+            "success": true,
+            "data": {
+              "selector": "id=\"proof.field\"",
+              "node": {
+                "type": "SecureTextField",
+                "identifier": "proof.field",
+                "value": "\u2022\u2022\u2022\u2022\u2022\u2022\u2022\u2022\u2022",
+                "rect": {
+                  "x": 50,
+                  "y": 80,
+                  "width": 340,
+                  "height": 38
+                },
+                "focused": true,
+                "editable": true,
+                "password": true
+              }
+            }
+          }
+        },
+        {
+          "arguments": [
+            "get",
+            "attrs",
+            "id=\"proof.witness\""
+          ],
+          "exitCode": 0,
+          "response": {
+            "success": true,
+            "data": {
+              "selector": "id=\"proof.witness\"",
+              "node": {
+                "type": "StaticText",
+                "identifier": "proof.witness",
+                "label": "taps=0 selections=0 rejected=0 targetFocus=1 neighbourFocus=0",
+                "rect": {
+                  "x": 50,
+                  "y": 194.33333333333334,
+                  "width": 340,
+                  "height": 20.333333333333343
+                }
+              }
+            }
+          }
+        },
+        {
+          "arguments": [
+            "fill",
+            "220.0",
+            "99.0",
+            "benchmark"
+          ],
+          "exitCode": 0,
+          "response": {
+            "success": true,
+            "data": {
+              "x": 220,
+              "y": 99,
+              "text": "benchmark",
+              "message": "Filled 9 chars",
+              "delayMs": 0,
+              "targetKind": "point"
+            }
+          }
+        },
+        {
+          "arguments": [
+            "wait",
+            "id=\"proof.actual\" label=\"Actual:benchmark Neighbour:untouched\"",
+            "5000"
+          ],
+          "exitCode": 0,
+          "response": {
+            "success": true,
+            "data": {
+              "selector": "id=\"proof.actual\" label=\"Actual:benchmark Neighbour:untouched\""
+            }
+          }
+        },
+        {
+          "arguments": [
+            "wait",
+            "id=\"proof.neighbour\" value=\"untouched\"",
+            "5000"
+          ],
+          "exitCode": 0,
+          "response": {
+            "success": true,
+            "data": {
+              "selector": "id=\"proof.neighbour\" value=\"untouched\""
+            }
+          }
+        },
+        {
+          "arguments": [
+            "get",
+            "attrs",
+            "id=\"proof.field\""
+          ],
+          "exitCode": 0,
+          "response": {
+            "success": true,
+            "data": {
+              "selector": "id=\"proof.field\"",
+              "node": {
+                "type": "SecureTextField",
+                "identifier": "proof.field",
+                "value": "\u2022\u2022\u2022\u2022\u2022\u2022\u2022\u2022\u2022",
+                "rect": {
+                  "x": 50,
+                  "y": 80,
+                  "width": 340,
+                  "height": 38
+                },
+                "focused": true,
+                "editable": true,
+                "password": true
+              }
+            }
+          }
+        },
+        {
+          "arguments": [
+            "get",
+            "attrs",
+            "id=\"proof.actual\""
+          ],
+          "exitCode": 0,
+          "response": {
+            "success": true,
+            "data": {
+              "selector": "id=\"proof.actual\"",
+              "node": {
+                "type": "StaticText",
+                "identifier": "proof.actual",
+                "label": "Actual:benchmark Neighbour:untouched",
+                "rect": {
+                  "x": 50,
+                  "y": 168,
+                  "width": 340,
+                  "height": 20.333333333333343
+                }
+              }
+            }
+          }
+        },
+        {
+          "arguments": [
+            "get",
+            "attrs",
+            "id=\"proof.witness\""
+          ],
+          "exitCode": 0,
+          "response": {
+            "success": true,
+            "data": {
+              "selector": "id=\"proof.witness\"",
+              "node": {
+                "type": "StaticText",
+                "identifier": "proof.witness",
+                "label": "taps=1 selections=0 rejected=0 targetFocus=1 neighbourFocus=0",
+                "rect": {
+                  "x": 50,
+                  "y": 194.33333333333334,
+                  "width": 340,
+                  "height": 20.333333333333343
+                }
+              }
+            }
+          }
+        }
+      ],
+      "sourceRunnerExcerptSha256": "7f0eb8bd34729eef184efbbe28f6cd11a7d041e3ed4bbc54bcfdbcbd303a17a2"
+    },
+    {
+      "case": "secure-focused-clear",
+      "requestedText": "",
+      "beforeField": {
+        "type": "SecureTextField",
+        "identifier": "proof.field",
+        "value": "\u2022\u2022\u2022\u2022\u2022\u2022\u2022\u2022\u2022",
+        "rect": {
+          "x": 50,
+          "y": 80,
+          "width": 340,
+          "height": 38
+        },
+        "focused": true,
+        "editable": true,
+        "password": true
+      },
+      "beforeWitness": {
+        "type": "StaticText",
+        "identifier": "proof.witness",
+        "label": "taps=0 selections=0 rejected=0 targetFocus=1 neighbourFocus=0",
+        "rect": {
+          "x": 50,
+          "y": 194.33333333333334,
+          "width": 340,
+          "height": 20.333333333333343
+        }
+      },
+      "afterField": {
+        "type": "SecureTextField",
+        "identifier": "proof.field",
+        "rect": {
+          "x": 50,
+          "y": 80,
+          "width": 340,
+          "height": 38
+        },
+        "focused": true,
+        "editable": true,
+        "password": true
+      },
+      "actualValueAssertion": {
+        "type": "StaticText",
+        "identifier": "proof.actual",
+        "label": "Actual: Neighbour:untouched",
+        "rect": {
+          "x": 50,
+          "y": 168,
+          "width": 340,
+          "height": 20.333333333333343
+        }
+      },
+      "afterWitness": {
+        "type": "StaticText",
+        "identifier": "proof.witness",
+        "label": "taps=1 selections=0 rejected=0 targetFocus=1 neighbourFocus=0",
+        "rect": {
+          "x": 50,
+          "y": 194.33333333333334,
+          "width": 340,
+          "height": 20.333333333333343
+        }
+      },
+      "focusReused": true,
+      "fieldTapCount": 1,
+      "commands": [
+        {
+          "arguments": [
+            "click",
+            "id=\"proof.focusedSecure\""
+          ],
+          "exitCode": 0,
+          "response": {
+            "success": true,
+            "data": {
+              "x": 333,
+              "y": 292,
+              "message": "Tapped id=\"proof.focusedSecure\" (333, 292)",
+              "referenceWidth": 440,
+              "referenceHeight": 956,
+              "targetKind": "selector",
+              "selector": "id=\"proof.focusedSecure\""
+            }
+          }
+        },
+        {
+          "arguments": [
+            "wait",
+            "id=\"proof.state\" label=\"Prepared focusedSecure\"",
+            "5000"
+          ],
+          "exitCode": 0,
+          "response": {
+            "success": true,
+            "data": {
+              "selector": "id=\"proof.state\" label=\"Prepared focusedSecure\""
+            }
+          }
+        },
+        {
+          "arguments": [
+            "wait",
+            "id=\"proof.actual\" label=\"Actual:seedvalue Neighbour:untouched\"",
+            "5000"
+          ],
+          "exitCode": 0,
+          "response": {
+            "success": true,
+            "data": {
+              "selector": "id=\"proof.actual\" label=\"Actual:seedvalue Neighbour:untouched\""
+            }
+          }
+        },
+        {
+          "arguments": [
+            "wait",
+            "id=\"proof.field\" focused=true",
+            "5000"
+          ],
+          "exitCode": 0,
+          "response": {
+            "success": true,
+            "data": {
+              "selector": "id=\"proof.field\" focused=true"
+            }
+          }
+        },
+        {
+          "arguments": [
+            "get",
+            "attrs",
+            "id=\"proof.field\""
+          ],
+          "exitCode": 0,
+          "response": {
+            "success": true,
+            "data": {
+              "selector": "id=\"proof.field\"",
+              "node": {
+                "type": "SecureTextField",
+                "identifier": "proof.field",
+                "value": "\u2022\u2022\u2022\u2022\u2022\u2022\u2022\u2022\u2022",
+                "rect": {
+                  "x": 50,
+                  "y": 80,
+                  "width": 340,
+                  "height": 38
+                },
+                "focused": true,
+                "editable": true,
+                "password": true
+              }
+            }
+          }
+        },
+        {
+          "arguments": [
+            "get",
+            "attrs",
+            "id=\"proof.witness\""
+          ],
+          "exitCode": 0,
+          "response": {
+            "success": true,
+            "data": {
+              "selector": "id=\"proof.witness\"",
+              "node": {
+                "type": "StaticText",
+                "identifier": "proof.witness",
+                "label": "taps=0 selections=0 rejected=0 targetFocus=1 neighbourFocus=0",
+                "rect": {
+                  "x": 50,
+                  "y": 194.33333333333334,
+                  "width": 340,
+                  "height": 20.333333333333343
+                }
+              }
+            }
+          }
+        },
+        {
+          "arguments": [
+            "fill",
+            "220.0",
+            "99.0",
+            ""
+          ],
+          "exitCode": 0,
+          "response": {
+            "success": true,
+            "data": {
+              "x": 220,
+              "y": 99,
+              "text": "",
+              "message": "Filled 0 chars",
+              "delayMs": 0,
+              "targetKind": "point"
+            }
+          }
+        },
+        {
+          "arguments": [
+            "wait",
+            "id=\"proof.actual\" label=\"Actual: Neighbour:untouched\"",
+            "5000"
+          ],
+          "exitCode": 0,
+          "response": {
+            "success": true,
+            "data": {
+              "selector": "id=\"proof.actual\" label=\"Actual: Neighbour:untouched\""
+            }
+          }
+        },
+        {
+          "arguments": [
+            "wait",
+            "id=\"proof.neighbour\" value=\"untouched\"",
+            "5000"
+          ],
+          "exitCode": 0,
+          "response": {
+            "success": true,
+            "data": {
+              "selector": "id=\"proof.neighbour\" value=\"untouched\""
+            }
+          }
+        },
+        {
+          "arguments": [
+            "get",
+            "attrs",
+            "id=\"proof.field\""
+          ],
+          "exitCode": 0,
+          "response": {
+            "success": true,
+            "data": {
+              "selector": "id=\"proof.field\"",
+              "node": {
+                "type": "SecureTextField",
+                "identifier": "proof.field",
+                "rect": {
+                  "x": 50,
+                  "y": 80,
+                  "width": 340,
+                  "height": 38
+                },
+                "focused": true,
+                "editable": true,
+                "password": true
+              }
+            }
+          }
+        },
+        {
+          "arguments": [
+            "get",
+            "attrs",
+            "id=\"proof.actual\""
+          ],
+          "exitCode": 0,
+          "response": {
+            "success": true,
+            "data": {
+              "selector": "id=\"proof.actual\"",
+              "node": {
+                "type": "StaticText",
+                "identifier": "proof.actual",
+                "label": "Actual: Neighbour:untouched",
+                "rect": {
+                  "x": 50,
+                  "y": 168,
+                  "width": 340,
+                  "height": 20.333333333333343
+                }
+              }
+            }
+          }
+        },
+        {
+          "arguments": [
+            "get",
+            "attrs",
+            "id=\"proof.witness\""
+          ],
+          "exitCode": 0,
+          "response": {
+            "success": true,
+            "data": {
+              "selector": "id=\"proof.witness\"",
+              "node": {
+                "type": "StaticText",
+                "identifier": "proof.witness",
+                "label": "taps=1 selections=0 rejected=0 targetFocus=1 neighbourFocus=0",
+                "rect": {
+                  "x": 50,
+                  "y": 194.33333333333334,
+                  "width": 340,
+                  "height": 20.333333333333343
+                }
+              }
+            }
+          }
+        }
+      ],
+      "sourceRunnerExcerptSha256": "17e21a61d252126127f6f8b5b391d9d1542ef2729cc1ac78c40f1a127c98756a"
+    }
+  ],
+  "cleanup": {
+    "completed": true,
+    "sessionsClosed": true,
+    "daemonStoppedWithClean": true,
+    "syntheticAppRemoved": true,
+    "simulatorShutdownIfBootedHere": true,
+    "simulatorLeaseReleased": true
+  }
+}
